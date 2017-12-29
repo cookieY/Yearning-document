@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Cookie">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>安装 - Yearning_guide</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5b89\u88c5";
+    var mkdocs_page_input_path = "install.md";
+    var mkdocs_page_url = "/install/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Yearning_guide</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Yearning使用手册</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">安装</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">相关依赖</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">安装</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#docker">docker安装</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../used/">使用</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../update/">更新日志</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../question/">相关问题</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">关于</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Yearning_guide</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>安装</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/cookieY/Yearning/edit/master/docs/install.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="_1">相关依赖</h2>
+<p><code>python &gt;= 3.6</code></p>
+<p><code>node &gt;= 6.10 (如需进行调试)</code></p>
+<p><code>nginx</code></p>
+<p><code>mysql &gt;= 5.6</code></p>
+<h2 id="_2">安装</h2>
+<p>正常模式：</p>
+<ul>
+<li>install nginx mysql python3.6</li>
+<li>git clone https://github.com/cookieY/Yearning.git</li>
+<li>编辑 Yearning/src/deploy.conf                   </li>
+</ul>
+<p><code>[mysql]
+db = 所创建的库名
+address = 数据库地址
+port = 端口
+password = 数据库密码
+username = 数据库用户
+[host]
+address = 服务器外网ip地址
+[Inception]
+ip = Inception地址
+port = Inception端口
+user = Inception用户名
+password  = Inception密码
+backupdb = 备份数据库地址
+backupport = 备份数据库端口
+backupuser = 备份数据库用户名
+backuppassword = 备份数据库密码</code></p>
+<ul>
+<li>pip3 install -r requirements.txt</li>
+<li>python3 manage.py makemigrations</li>
+<li>python3 manage.py migrate</li>
+<li>python3 manage.py createsuperuser admin</li>
+<li>python3 permissions.py admin</li>
+<li>cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/</li>
+<li>systemctl start nginx    </li>
+</ul>
+<p>调试模式：</p>
+<ul>
+<li><code>install nginx mysql python3.6 node</code></li>
+<li><code>git clone https://github.com/cookieY/Yearning.git</code></li>
+<li><code>编辑 Yearning/src/deploy.conf
+    [mysql]
+    db = 所创建的库名
+    address = 数据库地址
+    port = 端口
+    password = 数据库密码
+    username = 数据库用户
+    [host]
+    address = 服务器外网ip地址
+    [Inception]
+    ip = Inception地址
+    port = Inception端口
+    user = Inception用户名
+    password  = Inception密码
+    backupdb = 备份数据库地址
+    backupport = 备份数据库端口
+    backupuser = 备份数据库用户名
+    backuppassword = 备份数据库密码</code></li>
+<li><code>pip3 install -r requirements.txt</code></li>
+<li><code>python3 manage.py makemigrations</code></li>
+<li><code>python3 manage.py migrate</code></li>
+<li><code>python3 manage.py createsuperuser admin</code></li>
+<li><code>python3 permissions.py admin</code></li>
+<li><code>cd $YEARNING_HOME/webpage &amp;&amp; npm install</code></li>
+<li><code>python3 $YEARNING_HOME/runserver.py</code>        </li>
+</ul>
+<p>注意：
+ 必须事先建库，库字符集为UTF8 </p>
+<p>由于Inception 并不原生支持pymysql，所以需更改pymysql相关源码</p>
+<p>修改 $PYTHON_HOME/lib/python3.6/site-packages/pymysql下  </p>
+<p>connections.py 和  cursors.py 两个文件</p>
+<p>找到 connections.py 1108行</p>
+<pre><code>    if int(self.server_version.split('.', 1)[0]) &gt;= 5:
+            self.client_flag |= CLIENT.MULTI_RESULTS
+</code></pre>
+<p>更改为</p>
+<pre><code>    try:
+        if int(self.server_version.split('.', 1)[0]) &gt;= 5:
+            self.client_flag |= CLIENT.MULTI_RESULTS
+    except:
+        if self.server_version.split('.', 1)[0] &gt;= 'Inception2':
+            self.client_flag |= CLIENT.MULTI_RESULTS
+</code></pre>
+<p>找到 cursors.py 345行 </p>
+<pre><code>if self._result and (self._result.has_next or not self._result.warning_count):
+        return
+</code></pre>
+<p>更改为</p>
+<pre><code> if self._result:
+    return
+</code></pre>
+<h4 id="docker">docker安装</h4>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../used/" class="btn btn-neutral float-right" title="使用">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Yearning使用手册"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>ew</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/cookieY/Yearning/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../used/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
