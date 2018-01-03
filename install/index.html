@@ -238,6 +238,14 @@ python3 $YEARNING_HOME/runserver.py
 <h4 id="docker">docker安装</h4>
 <pre><code>docker run -it -d -p 80:80 -p 8000:8000 -e &quot;HOST=YOUR_IP&quot; registry.cn-hangzhou.aliyuncs.com/cookie/yearning 
 
+初始账号: admin  密码: Yearning_admin
+
+注意: 
+
+由于目前镜像并没有将数据库数据存放目录挂载到宿主机所以不建议在正式环境中使用docker
+
+建议在使用前评估及测试中使用
+
 </code></pre>
               
             </div>
