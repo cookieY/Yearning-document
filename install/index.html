@@ -139,14 +139,14 @@
 <li>git clone https://github.com/cookieY/Yearning.git</li>
 <li>编辑 Yearning/src/deploy.conf                   </li>
 </ul>
-<p><code>[mysql]
+<pre><code>[mysql]
 db = 所创建的库名
 address = 数据库地址
 port = 端口
 password = 数据库密码
 username = 数据库用户
 [host]
-address = 服务器外网ip地址
+ipaddress = 服务器外网ip地址
 [Inception]
 ip = Inception地址
 port = Inception端口
@@ -155,46 +155,60 @@ password  = Inception密码
 backupdb = 备份数据库地址
 backupport = 备份数据库端口
 backupuser = 备份数据库用户名
-backuppassword = 备份数据库密码</code></p>
-<ul>
-<li>pip3 install -r requirements.txt</li>
-<li>python3 manage.py makemigrations</li>
-<li>python3 manage.py migrate</li>
-<li>python3 manage.py createsuperuser admin</li>
-<li>python3 permissions.py admin</li>
-<li>cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/</li>
-<li>systemctl start nginx    </li>
-</ul>
+backuppassword = 备份数据库密码
+</code></pre>
+
+<pre><code>pip3 install -r requirements.txt
+
+python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate
+
+python3 manage.py createsuperuser admin
+
+echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell
+
+cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/
+
+systemctl start nginx    
+</code></pre>
+
 <p>调试模式：</p>
 <ul>
 <li><code>install nginx mysql python3.6 node</code></li>
 <li><code>git clone https://github.com/cookieY/Yearning.git</code></li>
-<li><code>编辑 Yearning/src/deploy.conf
-    [mysql]
-    db = 所创建的库名
-    address = 数据库地址
-    port = 端口
-    password = 数据库密码
-    username = 数据库用户
-    [host]
-    address = 服务器外网ip地址
-    [Inception]
-    ip = Inception地址
-    port = Inception端口
-    user = Inception用户名
-    password  = Inception密码
-    backupdb = 备份数据库地址
-    backupport = 备份数据库端口
-    backupuser = 备份数据库用户名
-    backuppassword = 备份数据库密码</code></li>
-<li><code>pip3 install -r requirements.txt</code></li>
-<li><code>python3 manage.py makemigrations</code></li>
-<li><code>python3 manage.py migrate</code></li>
-<li><code>python3 manage.py createsuperuser admin</code></li>
-<li><code>python3 permissions.py admin</code></li>
-<li><code>cd $YEARNING_HOME/webpage &amp;&amp; npm install</code></li>
-<li><code>python3 $YEARNING_HOME/runserver.py</code>        </li>
+<li><code>编辑 Yearning/src/deploy.conf</code></li>
 </ul>
+<pre><code>[mysql]
+db = 所创建的库名
+address = 数据库地址
+port = 端口
+password = 数据库密码
+username = 数据库用户
+[host]
+ipaddress = 服务器外网ip地址
+[Inception]
+ip = Inception地址
+port = Inception端口
+user = Inception用户名
+password  = Inception密码
+backupdb = 备份数据库地址
+backupport = 备份数据库端口
+backupuser = 备份数据库用户名
+backuppassword = 备份数据库密码
+</code></pre>
+
+<pre><code>pip3 install -r requirements.txt
+
+python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate
+
+python3 manage.py createsuperuser admin
+
+echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell
+
+cd $YEARNING_HOME/webpage &amp;&amp; npm install
+
+python3 $YEARNING_HOME/runserver.py
+</code></pre>
+
 <p>注意：
  必须事先建库，库字符集为UTF8 </p>
 <p>由于Inception 并不原生支持pymysql，所以需更改pymysql相关源码</p>
@@ -220,6 +234,7 @@ backuppassword = 备份数据库密码</code></p>
 <pre><code> if self._result:
     return
 </code></pre>
+<p>注: 在install 文件夹下有已经修改的connections.py 和 cursors.py 直接替换即可</p>
 <h4 id="docker">docker安装</h4>
               
             </div>
