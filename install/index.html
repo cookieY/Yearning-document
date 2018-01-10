@@ -168,7 +168,9 @@ echo &quot;from core.models import Account;Account.objects.create_user(username=
 
 cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/
 
-systemctl start nginx    
+systemctl start nginx
+
+python3 runserver 0.0.0.0:8000
 </code></pre>
 
 <p>调试模式：</p>
