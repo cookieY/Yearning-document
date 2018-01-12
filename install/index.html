@@ -146,7 +146,7 @@ port = 端口
 password = 数据库密码
 username = 数据库用户
 [host]
-ipaddress = 服务器外网ip地址:端口
+ipaddress = 服务器外网ip地址:端口 (默认端口8080)
 [Inception]
 ip = Inception地址
 port = Inception端口
@@ -162,8 +162,6 @@ backuppassword = 备份数据库密码
 
 python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate
 
-python3 manage.py createsuperuser admin
-
 echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell
 
 cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/
@@ -171,6 +169,8 @@ cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/
 systemctl start nginx
 
 python3 runserver 0.0.0.0:8000
+
+默认账号: admin  密码:Yearning_admin
 </code></pre>
 
 <p>调试模式：</p>
@@ -186,7 +186,7 @@ port = 端口
 password = 数据库密码
 username = 数据库用户
 [host]
-ipaddress = 服务器外网ip地址:端口
+ipaddress = 服务器外网ip地址:端口 (默认端口8080)
 [Inception]
 ip = Inception地址
 port = Inception端口
@@ -202,13 +202,13 @@ backuppassword = 备份数据库密码
 
 python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate
 
-python3 manage.py createsuperuser admin
-
 echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell
 
 cd $YEARNING_HOME/webpage &amp;&amp; npm install
 
 python3 $YEARNING_HOME/runserver.py
+
+默认账号: admin  密码:Yearning_admin
 </code></pre>
 
 <p>注意：
