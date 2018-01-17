@@ -129,14 +129,16 @@
               
                 <h2 id="_1">相关依赖</h2>
 <p><code>python &gt;= 3.6</code></p>
-<p><code>node &gt;= 6.10 (如需进行调试)</code></p>
-<p><code>nginx</code></p>
+<p><code>node &gt;= 6.10 (开发模式需要)</code></p>
+<p><code>nginx (正常模式需要)</code></p>
 <p><code>mysql &gt;= 5.6</code></p>
 <h2 id="_2">安装</h2>
-<p>正常模式：</p>
+<p>生产模式：</p>
 <ul>
-<li>install nginx mysql python3.6</li>
+<li>安装 nginx mysql python3.6</li>
 <li>git clone https://github.com/cookieY/Yearning.git</li>
+<li>systemctl start mysqld 启动mysql</li>
+<li>进入mysql 创建数据库并设置库字符集编码为utf8</li>
 <li>编辑 Yearning/src/deploy.conf                   </li>
 </ul>
 <pre><code>[mysql]
@@ -158,15 +160,15 @@ backupuser = 备份数据库用户名
 backuppassword = 备份数据库密码
 </code></pre>
 
-<pre><code>pip3 install -r requirements.txt
+<pre><code>pip3 install -r requirements.txt 安装相应python依赖库
 
-python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate
+python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate 初始化数据库
 
-echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell
+echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell 添加初始化用户
 
-cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/
+cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/   复制编译好的静态文件到nginx html目录下
 
-systemctl start nginx
+systemctl start nginx  启动nginx
 
 python3 manage.py runserver 0.0.0.0:8000
 
