@@ -148,7 +148,7 @@ port = 端口
 password = 数据库密码
 username = 数据库用户
 [host]
-ipaddress = 平台访问地址  格式: ip:端口 (默认端口8080,这里填写的是什么地址访问平台就用什么地址。涉及跨域，不可改变！)
+ipaddress = 平台访问地址  格式: ip:端口 填写nginx ip:端口 80端口可不填端口其他端口必须填
 [Inception]
 ip = Inception地址
 port = Inception端口
@@ -171,6 +171,8 @@ cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/   复制编译好的静�
 systemctl start nginx  启动nginx
 
 python3 manage.py runserver 0.0.0.0:8000
+
+访问nginx端口
 
 默认账号: admin  密码:Yearning_admin
 </code></pre>
@@ -209,6 +211,8 @@ echo &quot;from core.models import Account;Account.objects.create_user(username=
 cd $YEARNING_HOME/webpage &amp;&amp; npm install
 
 python3 $YEARNING_HOME/runserver.py
+
+访问127.0.0.1:8080
 
 默认账号: admin  密码:Yearning_admin
 </code></pre>
