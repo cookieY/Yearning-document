@@ -71,22 +71,25 @@
     <li class="toctree-l2"><a href="#_2">表结构修改</a></li>
     
 
+    <li class="toctree-l2"><a href="#_3">索引修改</a></li>
+    
+
     <li class="toctree-l2"><a href="#sql">SQL语句提交</a></li>
     
 
-    <li class="toctree-l2"><a href="#_3">数据库字典</a></li>
+    <li class="toctree-l2"><a href="#_4">数据库字典</a></li>
     
 
-    <li class="toctree-l2"><a href="#_4">用户管理</a></li>
+    <li class="toctree-l2"><a href="#_5">用户管理</a></li>
     
 
-    <li class="toctree-l2"><a href="#_5">数据库管理</a></li>
+    <li class="toctree-l2"><a href="#_6">数据库管理</a></li>
     
 
-    <li class="toctree-l2"><a href="#_6">审核</a></li>
+    <li class="toctree-l2"><a href="#_7">审核</a></li>
     
 
-    <li class="toctree-l2"><a href="#_7">执行记录</a></li>
+    <li class="toctree-l2"><a href="#_8">执行记录</a></li>
     
 
     </ul>
@@ -156,7 +159,8 @@
 <p>站内信入口</p>
 </li>
 <li>
-<p>锁定账户，变换主题及全屏</p>
+<p>锁定账户，变换主题及全屏
+<img alt="dashboard" src="../images/lock.gif" /></p>
 </li>
 </ul>
 <p>注意事项: </p>
@@ -168,14 +172,16 @@
 <li>查看该账户下提交的工单信息</li>
 </ul>
 <p>注意事项: </p>
-<p>每条工单都拥有自己的详细信息。 </p>
-<p>同意状态的工单 可以查看回滚语句并重新提交工单</p>
-<p>驳回状态的工单 可以重新编辑SQL语句并重新提交(更改表结构语句不可编辑)</p>
+<p><code>每条工单都拥有自己的详细信息。点击详细信息后可以查看该工单提交SQL的信息</code> </p>
+<p><code>同意状态的工单 可以点击详细信息后查看回滚语句并重新提交工单</code></p>
+<p><code>驳回状态的工单 可以点击详细信息后重新编辑SQL语句并重新提交(更改表结构语句不可编辑)</code></p>
+<p><code>审核状态的工单 点击详细信息后可以撤销工单</code></p>
+<p><code>进行中的工单  不可进行任何操作</code></p>
 <h2 id="_2">表结构修改</h2>
-<p><img alt="dashboard" src="../images/alter.png" /></p>
+<p><img alt="dashboard" src="../images/alter.gif" /></p>
 <p>主要功能:</p>
 <ul>
-<li>根据选择条件自动生成表结构更改语句及索引语句</li>
+<li>根据选择条件自动生成表结构更改语句</li>
 </ul>
 <p>添加字段流程:</p>
 <pre><code>选择数据库 -&gt; 在添加字段页面的表单中填写相关字段信息后点击添加(此时并不会生成语句，如果想删除可直接在表格中删除) 
@@ -189,13 +195,18 @@
 点击页面生成按钮生成语句 -&gt; 点击提交工单 -&gt; 确认工单无误后提交！
 </code></pre>
 
-<p>添加&amp;删除索引 与以上步骤类似</p>
 <p>注意事项:</p>
 <pre><code>添加字段时，如指定了类型长度则在类型及长度输入框中输入，例 int(12)。
 
 如并未设置字段长度则填写为int
 </code></pre>
 
+<h2 id="_3">索引修改</h2>
+<p>主要功能:</p>
+<ul>
+<li>根据选择条件自动生成索引更改语句</li>
+</ul>
+<p>添加&amp;删除索引 与表结构修改类似</p>
 <h2 id="sql">SQL语句提交</h2>
 <p><img alt="dashboard" src="../images/sql.png" /></p>
 <p>主要功能:</p>
@@ -208,7 +219,7 @@
 <pre><code>为了确保提交SQL的准确及规范，提交按钮只有在点击检测后错误等级为0时才会激活。
 </code></pre>
 
-<h2 id="_3">数据库字典</h2>
+<h2 id="_4">数据库字典</h2>
 <p><img alt="dashboard" src="../images/dic.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -220,7 +231,7 @@
 </code></pre>
 
 <p>以下页面仅对admin权限账号可见</p>
-<h2 id="_4">用户管理</h2>
+<h2 id="_5">用户管理</h2>
 <p><img alt="dashboard" src="../images/user.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -232,8 +243,8 @@
 admin为超级管理员适用于DBA，guest适用于开发，guest不可见管理页面也不能编辑数据字典备注。
 </code></pre>
 
-<h2 id="_5">数据库管理</h2>
-<p><img alt="dashboard" src="../images/base.png" /></p>
+<h2 id="_6">数据库管理</h2>
+<p><img alt="dashboard" src="../images/managedb.png" /></p>
 <p>主要功能:</p>
 <ul>
 <li>添加，编辑，删除数据库信息</li>
@@ -243,13 +254,15 @@ admin为超级管理员适用于DBA，guest适用于开发，guest不可见管�
 
 钉钉推送处添加钉钉webhook可在工单提交，驳回或同意时发送自定义钉钉消息。
 
+email及钉钉推送开关默认关闭 开启后将启用对应推送服务
+
 字典生成可一键生成所选库下所有表的数据信息(数据将一次性存入本地数据库，之后不会经过线上数据库)，
 
 如果生成后删除对应库的连接数据库。生成的数据字典不会删除，必须通过字典删除功能才能删除生成的数据字典数据。
 </code></pre>
 
 <p><a href="https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.tRwLqm&amp;treeId=257&amp;articleId=105735&amp;docType=1">钉钉webhook具体使用教程</a></p>
-<h2 id="_6">审核</h2>
+<h2 id="_7">审核</h2>
 <p><img alt="dashboard" src="../images/audit.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -261,7 +274,7 @@ admin为超级管理员适用于DBA，guest适用于开发，guest不可见管�
 如该工单为修改表结构语句且修改的表存在于数据字典则语句执行成功后 数据字典中该字段也会进行同步。
 </code></pre>
 
-<h2 id="_7">执行记录</h2>
+<h2 id="_8">执行记录</h2>
 <p><img alt="dashboard" src="../images/record.png" /></p>
 <p>主要功能:</p>
 <ul>

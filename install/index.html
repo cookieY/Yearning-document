@@ -62,6 +62,9 @@
 
     <li class="toctree-l2"><a href="#_2">安装</a></li>
     
+
+    <li class="toctree-l2"><a href="#_3">注意事项</a></li>
+    
         <ul>
         
             <li><a class="toctree-l3" href="#docker">docker安装</a></li>
@@ -129,26 +132,31 @@
               
                 <h2 id="_1">相关依赖</h2>
 <p><code>python &gt;= 3.6</code></p>
-<p><code>node &gt;= 6.10 (开发模式需要)</code></p>
-<p><code>nginx (正常模式需要)</code></p>
+<p><code>node &gt;= 6.10 (仅开发模式安装)</code></p>
+<p><code>nginx</code></p>
 <p><code>mysql &gt;= 5.6</code></p>
+<p><code>Inception</code></p>
 <h2 id="_2">安装</h2>
-<p>生产模式：</p>
+<p>生产模式安装：</p>
 <ul>
-<li>安装 nginx mysql python3.6</li>
+<li>安装 nginx mysql python3.6 (nginx,mysql推荐yum安装。python3.6官方自行下载安装)</li>
+<li>安装Inception(install目录下有已经编译好的Inception可以直接运行)</li>
+<li>建立数据库 (库字符集为UTF8 )</li>
 <li>git clone https://github.com/cookieY/Yearning.git</li>
-<li>systemctl start mysqld 启动mysql</li>
-<li>进入mysql 创建数据库并设置库字符集编码为utf8</li>
 <li>编辑 Yearning/src/deploy.conf                   </li>
 </ul>
 <pre><code>[mysql]
 db = 所创建的库名
 address = 数据库地址
-port = 端口
+port = 数据库端口
 password = 数据库密码
 username = 数据库用户
+
 [host]
-ipaddress = 平台访问地址  格式: ip:端口 填写nginx ip:端口 80端口可不填端口其他端口必须填
+ipaddress = 服务器ip地址:端口 (涉及跨域十分重要!!设置不正确将无法登陆!!)
+            如 本机地址为192.168.1.2 nginx设置端口为80
+            则应填写为 192.168.1.2:80 之后通过该地址访问平台。
+
 [Inception]
 ip = Inception地址
 port = Inception端口
@@ -158,6 +166,16 @@ backupdb = 备份数据库地址
 backupport = 备份数据库端口
 backupuser = 备份数据库用户名
 backuppassword = 备份数据库密码
+
+[LDAP] LDAP相关设置
+LDAP_SERVER = LDAP服务地址
+LDAP_SCBASE = LDAP dc 设置 如 dc=xxx,dc=com
+LDAP_DOMAIN = LDAP域名 如 xxx.com
+
+[email] 邮箱推送相关设置
+username = 邮箱发件账号 如 xxxx@163.com
+password = 邮箱发件账号密码
+smtp_server = 邮箱stmp地址, 具体地址请咨询对应邮箱提供者
 </code></pre>
 
 <pre><code>pip3 install -r requirements.txt 安装相应python依赖库
@@ -166,31 +184,37 @@ python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate 初始化�
 
 echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell 添加初始化用户
 
-cp -rf $YEARNING_HOME/webpage/dist/* $NGINX_HOME/html/   复制编译好的静态文件到nginx html目录下
+cp -rf Yearning/webpage/dist/* $NGINX_HOME/html/   复制编译好的静态文件到nginx html目录下(如自行更改Nginx静态路径地址则将静态文件复制到对应静态文件目录下)
 
 systemctl start nginx  启动nginx
 
-python3 manage.py runserver 0.0.0.0:8000
+python3 manage.py runserver 0.0.0.0:8000 启动django
 
-访问nginx端口
+访问deploy.conf 配置文件中ipaddress 填写的地址
 
 默认账号: admin  密码:Yearning_admin
 </code></pre>
 
-<p>调试模式：</p>
+<p>开发模式：</p>
 <ul>
-<li><code>install nginx mysql python3.6 node</code></li>
-<li><code>git clone https://github.com/cookieY/Yearning.git</code></li>
-<li><code>编辑 Yearning/src/deploy.conf</code></li>
+<li>安装 node mysql python3.6 (mysql推荐yum安装。python3.6,node官方自行下载安装)</li>
+<li>安装Inception(install目录下有已经编译好的Inception可以直接运行)</li>
+<li>建立数据库 (库字符集为UTF8 )</li>
+<li>git clone https://github.com/cookieY/Yearning.git</li>
+<li>编辑 Yearning/src/deploy.conf   </li>
 </ul>
 <pre><code>[mysql]
 db = 所创建的库名
 address = 数据库地址
-port = 端口
+port = 数据库端口
 password = 数据库密码
 username = 数据库用户
+
 [host]
-ipaddress = 平台访问地址  格式: ip:端口 (默认端口8080,这里填写的是什么地址访问平台就用什么地址。涉及跨域，不可改变！)
+ipaddress = 服务器ip地址:8080 (涉及跨域十分重要!!设置不正确将无法登陆!!)
+            如 本机地址为192.168.1.2
+            则应填写为 192.168.1.2:8080 之后通过该地址访问平台。
+
 [Inception]
 ip = Inception地址
 port = Inception端口
@@ -200,6 +224,16 @@ backupdb = 备份数据库地址
 backupport = 备份数据库端口
 backupuser = 备份数据库用户名
 backuppassword = 备份数据库密码
+
+[LDAP] LDAP相关设置
+LDAP_SERVER = LDAP服务地址
+LDAP_SCBASE = LDAP dc 设置 如 dc=xxx,dc=com
+LDAP_DOMAIN = LDAP域名 如 xxx.com
+
+[email] 邮箱推送相关设置
+username = 邮箱发件账号 如 xxxx@163.com
+password = 邮箱发件账号密码
+smtp_server = 邮箱stmp地址, 具体地址请咨询对应邮箱提供者
 </code></pre>
 
 <pre><code>pip3 install -r requirements.txt
@@ -208,17 +242,16 @@ python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate
 
 echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell
 
-cd $YEARNING_HOME/webpage &amp;&amp; npm install
+cd Yearning/webpage &amp;&amp; npm install
 
-python3 $YEARNING_HOME/runserver.py
+python3 Yearning/runserver.py
 
-访问127.0.0.1:8080
+访问deploy.conf 配置文件中ipaddress 填写的地址
 
 默认账号: admin  密码:Yearning_admin
 </code></pre>
 
-<p>注意：
- 必须事先建库，库字符集为UTF8 </p>
+<h2 id="_3">注意事项</h2>
 <p>由于Inception 并不原生支持pymysql，所以需更改pymysql相关源码</p>
 <p>修改 $PYTHON_HOME/lib/python3.6/site-packages/pymysql下  </p>
 <p>connections.py 和  cursors.py 两个文件</p>
@@ -244,7 +277,9 @@ python3 $YEARNING_HOME/runserver.py
 </code></pre>
 <p>注: 在install 文件夹下有已经修改的connections.py 和 cursors.py 直接替换即可</p>
 <h4 id="docker">docker安装</h4>
-<pre><code>docker run -it -d -p 80:80 -p 8000:8000 -e &quot;HOST=宿主机ip&quot; registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v0.0.4 
+<pre><code>docker run -it -d -p 80:80 -p 8000:8000 -e &quot;HOST=宿主机ip&quot; registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v0.0.5 
+
+直接拷贝运行 端口不可更改！
 
 初始账号: admin  密码: Yearning_admin
 
