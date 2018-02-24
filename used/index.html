@@ -68,28 +68,28 @@
     <li class="toctree-l2"><a href="#_1">我的工单</a></li>
     
 
-    <li class="toctree-l2"><a href="#_2">表结构修改</a></li>
+    <li class="toctree-l2"><a href="#ddl">DDL</a></li>
     
 
-    <li class="toctree-l2"><a href="#_3">索引修改</a></li>
+    <li class="toctree-l2"><a href="#_2">索引修改</a></li>
     
 
-    <li class="toctree-l2"><a href="#sql">SQL语句提交</a></li>
+    <li class="toctree-l2"><a href="#dml">DML</a></li>
     
 
-    <li class="toctree-l2"><a href="#_4">数据库字典</a></li>
+    <li class="toctree-l2"><a href="#_3">数据库字典</a></li>
     
 
-    <li class="toctree-l2"><a href="#_5">用户管理</a></li>
+    <li class="toctree-l2"><a href="#_4">用户管理</a></li>
     
 
-    <li class="toctree-l2"><a href="#_6">数据库管理</a></li>
+    <li class="toctree-l2"><a href="#_5">数据库管理</a></li>
     
 
-    <li class="toctree-l2"><a href="#_7">审核</a></li>
+    <li class="toctree-l2"><a href="#_6">审核</a></li>
     
 
-    <li class="toctree-l2"><a href="#_8">执行记录</a></li>
+    <li class="toctree-l2"><a href="#_7">执行记录</a></li>
     
 
     </ul>
@@ -103,6 +103,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../question/">相关问题</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../develop/">Yearning开发规范</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -177,73 +182,89 @@
 <p><code>驳回状态的工单 可以点击详细信息后重新编辑SQL语句并重新提交(更改表结构语句不可编辑)</code></p>
 <p><code>审核状态的工单 点击详细信息后可以撤销工单</code></p>
 <p><code>进行中的工单  不可进行任何操作</code></p>
-<h2 id="_2">表结构修改</h2>
+<h2 id="ddl">DDL</h2>
 <p><img alt="dashboard" src="../images/alter.gif" /></p>
 <p>主要功能:</p>
 <ul>
-<li>根据选择条件自动生成表结构更改语句</li>
+<li>提供手动模式及生成模式:</li>
+<li>
+<p>手动模式可自由编写DDL语句并提供自动补全,语法高亮等功能（系统会自动过滤非DDL语句）</p>
+</li>
+<li>
+<p>生成模式提供可视化界面不用编写DDL语句，可直接生成</p>
+</li>
 </ul>
-<p>添加字段流程:</p>
-<pre><code>选择数据库 -&gt; 在添加字段页面的表单中填写相关字段信息后点击添加(此时并不会生成语句，如果想删除可直接在表格中删除) 
-
--&gt; 点击修改&amp;删除字段 -&gt; 点击页面生成按钮生成语句 -&gt; 点击提交工单 -&gt; 确认工单无误后提交！
+<p>生成模式-添加字段流程:</p>
+<pre><code>选择数据库 -&gt; 在生成添加字段页面表单中填写相关字段信息后点击添加(此时并不会生成语句，如果想删除可直接在表格中删除) -&gt; 点击生成 -&gt; 点击提交工单 -&gt; 确认工单无误后提交！
 </code></pre>
 
-<p>修改或删除字段流程:</p>
-<pre><code>点击修改&amp;删除字段 -&gt; 选择相应字段修改并点击修改确认，或点击删除 删除改字段 -&gt;
+<p>生成模式-修改或删除字段流程:</p>
+<pre><code>点击生成修改&amp;删除字段 -&gt; 选择相应字段修改并点击修改确认，或点击删除 删除改字段 -&gt;
 
-点击页面生成按钮生成语句 -&gt; 点击提交工单 -&gt; 确认工单无误后提交！
+点击生成 -&gt; 点击提交工单 -&gt; 确认工单无误后提交！
 </code></pre>
 
 <p>注意事项:</p>
-<pre><code>添加字段时，如指定了类型长度则在类型及长度输入框中输入，例 int(12)。
+<pre><code>生成模式能保证绝大多数的DDL语句的正确生成但并不能保证所有的DDL语句都正确生成(毕竟机器是死的人是活的)
 
-如并未设置字段长度则填写为int
+对于手动模式来说，一般建议规范DDL语句写法。 如 更改字段应使用 change 而不是modify 等其他的语法。
+
+对于删除字段或表也应该直接使用DROP (因为系统会检测关键字来分析DDL语句来进行数据库字典同步)。
+
+手动模式及生成模式都默认会对修改字段，删除字段，新增字段，删除表这些操作进行数据字典同步(手动模式需满足关键字分析要求。增加表由于create table 的语法多样性较难进行语法分析，所以请前往数据库字典页面手动添加)
+
+
 </code></pre>
 
-<h2 id="_3">索引修改</h2>
+<h2 id="_2">索引修改</h2>
 <p>主要功能:</p>
 <ul>
 <li>根据选择条件自动生成索引更改语句</li>
 </ul>
 <p>添加&amp;删除索引 与表结构修改类似</p>
-<h2 id="sql">SQL语句提交</h2>
+<h2 id="dml">DML</h2>
 <p><img alt="dashboard" src="../images/sql.png" /></p>
 <p>主要功能:</p>
 <ul>
-<li>SQL检测</li>
-<li>SQL美化</li>
-<li>SQL提交</li>
+<li>DML检测</li>
+<li>DML美化</li>
+<li>DML提交</li>
+<li>DML自动补全,语法高亮</li>
 </ul>
 <p>注意事项: </p>
 <pre><code>为了确保提交SQL的准确及规范，提交按钮只有在点击检测后错误等级为0时才会激活。
+
+只能提交DML语句,系统会自动过滤非DML语句
 </code></pre>
 
-<h2 id="_4">数据库字典</h2>
+<h2 id="_3">数据库字典</h2>
 <p><img alt="dashboard" src="../images/dic.png" /></p>
 <p>主要功能:</p>
 <ul>
-<li>数据字典查阅</li>
+<li>数据字典查阅及修改</li>
 <li>导出数据字典(.docx文档)</li>
 </ul>
-<p>注意事项: </p>
-<pre><code>为确保数据字典的一致性, 字典备注只能由admin权限的账号进行修改。
-</code></pre>
-
-<p>以下页面仅对admin权限账号可见</p>
-<h2 id="_5">用户管理</h2>
+<p>以下页面仅对admin权限组账号可见</p>
+<h2 id="_4">用户管理</h2>
 <p><img alt="dashboard" src="../images/user.png" /></p>
 <p>主要功能:</p>
 <ul>
-<li>添加，编辑，删除用户信息</li>
+<li>
+<p>添加，编辑权限，删除用户信息</p>
+</li>
+<li>
+<p>12种不同的独立权限选项</p>
+</li>
 </ul>
-<p>注意事项: </p>
-<pre><code>权限分为admin,guest。
-
-admin为超级管理员适用于DBA，guest适用于开发，guest不可见管理页面也不能编辑数据字典备注。
-</code></pre>
-
-<h2 id="_6">数据库管理</h2>
+<p>yearning权限划分图:</p>
+<p><img alt="" src="../images/per.png" /></p>
+<p>Yearning采用多源权限策略。</p>
+<p>由权限组及细分权限两大部分组成。</p>
+<p>权限组分为admin,guest。
+admin权限组导航栏所有页面可见,guest权限组无法可见管理相关页面</p>
+<p>细分权限为上图中的12种独立权限。所有的权限相互独立，互不影响，可随意自由组合。</p>
+<p>如: 某一个用户可以访问DML页面但只能访问test连接名，但是访问DDL页面可以访问test，testone这2个连接名，查询不准访问。诸如此类根据实际公司需要进行多样化配置</p>
+<h2 id="_5">数据库管理</h2>
 <p><img alt="dashboard" src="../images/managedb.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -262,7 +283,7 @@ email及钉钉推送开关默认关闭 开启后将启用对应推送服务
 </code></pre>
 
 <p><a href="https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.tRwLqm&amp;treeId=257&amp;articleId=105735&amp;docType=1">钉钉webhook具体使用教程</a></p>
-<h2 id="_7">审核</h2>
+<h2 id="_6">审核</h2>
 <p><img alt="dashboard" src="../images/audit.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -274,7 +295,7 @@ email及钉钉推送开关默认关闭 开启后将启用对应推送服务
 如该工单为修改表结构语句且修改的表存在于数据字典则语句执行成功后 数据字典中该字段也会进行同步。
 </code></pre>
 
-<h2 id="_8">执行记录</h2>
+<h2 id="_7">执行记录</h2>
 <p><img alt="dashboard" src="../images/record.png" /></p>
 <p>主要功能:</p>
 <ul>

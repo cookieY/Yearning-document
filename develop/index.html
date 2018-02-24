@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Cookie">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Yearning开发规范 - Yearning_guide</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Yearning\u5f00\u53d1\u89c4\u8303";
+    var mkdocs_page_input_path = "develop.md";
+    var mkdocs_page_url = "/develop/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Yearning_guide</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Yearning使用手册</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../install/">安装</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../used/">使用</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../update/">更新日志</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../question/">相关问题</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Yearning开发规范</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">声明</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_2">被授权人权利</a></li>
+        
+            <li><a class="toctree-l3" href="#_3">被授权人义务</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_4">技术栈</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_5">架构</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_6">目录结构</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">关于</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Yearning_guide</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Yearning开发规范</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/cookieY/Yearning/edit/master/docs/develop.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="_1">声明</h2>
+<p>Yearning 从1.0.0 版本后遵循Apache 2.0协议。</p>
+<p>该协议具体约束及权利如下:</p>
+<h5 id="_2">被授权人权利</h5>
+<p>被授权人有权利使用、复制、修改、合并、散布、再授权软件及软件的副本。</p>
+<h5 id="_3">被授权人义务</h5>
+<p>需要给代码的用户一份Apache Licence
+如果你修改了代码，需要在被修改的文件中说明。</p>
+<p>在延伸的代码中（修改和有源代码衍生的代码中）需要带有原来代码中的协议，商标，专利声明和其他原来作者规定需要包含的说明。</p>
+<p>如果再发布的产品中包含一个Notice文件，则在Notice文件中需要带有Apache Licence。你可以在Notice中增加自己的许可，但不可以表现为对Apache Licence构成更改。</p>
+<h2 id="_4">技术栈</h2>
+<ul>
+<li>后端:<ul>
+<li>Python 语法</li>
+<li>Django web开发 包括(django-restframwork)</li>
+<li>多线程异步</li>
+</ul>
+</li>
+<li>前端<ul>
+<li>ES6 语法</li>
+<li>Vue.js 及周边生态 vuex axios vue-route</li>
+<li>webpack 及前端工程化</li>
+<li>html css </li>
+</ul>
+</li>
+</ul>
+<h2 id="_5">架构</h2>
+<p>Yearning 采用前后端分离架构 前端与后端完全分离。</p>
+<p>后端均采用restful风格的api编写方式。</p>
+<p>认证采用jwt方式。该架构下Django static渲染 session认证 template语法等全部舍弃。</p>
+<h2 id="_6">目录结构</h2>
+<ul>
+<li>Yearning</li>
+<li>core<ul>
+<li>src<ul>
+<li>api   <code>api接口目录</code><ul>
+<li>auditorder.py <code>sql审核</code></li>
+<li>gensql.py <code>sql生成</code></li>
+<li>managerdb.py <code>数据库管理</code></li>
+<li>other.py <code>附加功能</code></li>
+<li>record.py <code>审核记录</code></li>
+<li>serachsql.py <code>sql查询</code></li>
+<li>sqldic.py <code>数据库字典</code></li>
+<li>sqlorder.py <code>sql工单</code></li>
+<li>user.py  <code>用户管理</code></li>
+</ul>
+</li>
+<li>model.py <code>数据表生成</code></li>
+<li>apps.py</li>
+<li>init.py</li>
+<li>migrations</li>
+</ul>
+</li>
+<li>exportData <code>数据库字典生成文档目录</code></li>
+<li>libs<ul>
+<li>init.py</li>
+<li>baseview.py <code>restframwork 权限继承类</code></li>
+<li>call_inception.py <code>inception连接</code> </li>
+<li>con_database.py <code>数据库连接</code></li>
+<li>exportdocx.py <code>文档导出</code></li>
+<li>gen_ddl.py <code>ddl语句生成</code></li>
+<li>rollback.py <code>回滚语句</code></li>
+<li>send_email.py <code>邮件发送</code></li>
+<li>serializers.py <code>序列化</code></li>
+<li>util.py <code>工具集</code></li>
+</ul>
+</li>
+<li>log <code>日志目录</code></li>
+<li>settingConf <ul>
+<li>settings.py</li>
+<li>init.py</li>
+<li>urls.py </li>
+<li>wsgi.py </li>
+</ul>
+</li>
+<li>deploy.conf <code>平台配置文件</code></li>
+<li>manage.py</li>
+<li>requirements.txt  </li>
+</ul>
+</li>
+<li>webpage<ul>
+<li>src  <code>vue文件目录</code><ul>
+<li>components <code>vue 组件</code><ul>
+<li>Error <code>错误页面</code></li>
+<li>Management <code>管理相关组件</code></li>
+<li>Myself <code>个人空间及站内信组件</code></li>
+<li>Order <code>工单相关组件</code></li>
+<li>Search <code>查看相关组件</code></li>
+<li>home <code>主页组件</code> </li>
+</ul>
+</li>
+<li>libs <code>工具集</code></li>
+<li>main_components <code>主框架组件</code></li>
+<li>styles <code>less,css文件</code></li>
+<li>Login.vue <code>登陆组件</code></li>
+<li>Main.vue <code>主框架组件</code></li>
+<li>Subnet.vue <code>接口组件</code></li>
+<li>aspsm.js <code>vuex</code></li>
+<li>main.js  <code>入口js</code></li>
+<li>route.js <code>路由</code></li>
+</ul>
+</li>
+<li>dist <code>编译文件</code></li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../about/" class="btn btn-neutral float-right" title="关于">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../question/" class="btn btn-neutral" title="相关问题"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/cookieY/Yearning/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../question/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
