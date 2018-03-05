@@ -296,11 +296,15 @@ python3 Yearning/runserver.py
 </code></pre>
 <p>注: 在install 文件夹下有已经修改的connections.py 和 cursors.py 直接替换即可</p>
 <h4 id="docker">docker安装</h4>
-<pre><code>docker run -it -d -p 80:80 -p 8000:8000 -e &quot;HOST=宿主机ip&quot; registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v0.0.5 
+<pre><code>docker run -it -d -p 80:80 -p 8000:8000 -e &quot;HOST=宿主机ip&quot; registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.0.0
 
-直接拷贝运行 端口不可更改！
+docker exec -it  container_id /bin/bash 
+
+echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'query': '1', 'querycon': [], 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell
+
 
 初始账号: admin  密码: Yearning_admin
+
 
 注意: 
 
