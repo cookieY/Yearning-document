@@ -191,11 +191,11 @@ smtp_server = 邮箱stmp地址, 具体地址请咨询对应邮箱提供者
 
 <pre><code>pip3 install -r requirements.txt 安装相应python依赖库
 
-python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate 初始化数据库
+python3 manage.py makemigrations core &amp;&amp; python3 manage.py migrate core 初始化数据库
 
 echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell 添加初始化用户
 
-echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'query': '1', 'querycon': [], 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell 初始化权限
+echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'query': '1', 'querycon': [], 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell 初始化权限
 
 
 cp -rf Yearning/webpage/dist/* $NGINX_HOME/html/   复制编译好的静态文件到nginx html目录下(如自行更改Nginx静态路径地址则将静态文件复制到对应静态文件目录下)
@@ -254,11 +254,11 @@ smtp_server = 邮箱stmp地址, 具体地址请咨询对应邮箱提供者
 
 <pre><code>pip3 install -r requirements.txt
 
-python3 manage.py makemigrations &amp;&amp; python3 manage.py migrate
+python3 manage.py makemigrations core &amp;&amp; python3 manage.py migrate core
 
 echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell
 
-echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'query': '1', 'querycon': [], 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell  初始化权限
+echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'query': '1', 'querycon': [], 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell  初始化权限
 
 cd Yearning/webpage &amp;&amp; npm install
 
@@ -270,7 +270,7 @@ python3 Yearning/runserver.py
 </code></pre>
 
 <h2 id="_3">注意事项</h2>
-<p>默认超级管理员只拥有各个页面的访问权限,其他的权限需自行增加！详情请查看使用说明用户管理</p>
+<p>默认超级管理用户只拥有管理页面的访问权限,其他的权限需自行增加！详情请查看使用说明用户管理</p>
 <p>由于Inception 并不原生支持pymysql，所以需更改pymysql相关源码</p>
 <p>修改 $PYTHON_HOME/lib/python3.6/site-packages/pymysql下  </p>
 <p>connections.py 和  cursors.py 两个文件</p>
