@@ -8,7 +8,7 @@
   
   <meta name="author" content="Cookie">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>赞助名单 - Yearning_guide</title>
+  <title>更新注意事项 - Yearning_guide</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u8d5e\u52a9\u540d\u5355";
-    var mkdocs_page_input_path = "thanks.md";
-    var mkdocs_page_url = "/thanks/";
+    var mkdocs_page_name = "\u66f4\u65b0\u6ce8\u610f\u4e8b\u9879";
+    var mkdocs_page_input_path = "update_att.md";
+    var mkdocs_page_url = "/update_att/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -67,9 +67,18 @@
     <a class="" href="../update/">更新日志</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../update_att/">更新注意事项</a>
+    <a class="current" href="./">更新注意事项</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#yearning">Yearning更新注意事项：</a></li>
+    
+
+    <li class="toctree-l2"><a href="#yearning-112">Yearning 1.1.2 更新注意事项</a></li>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -82,15 +91,9 @@
     <a class="" href="../develop/">Yearning开发规范</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">赞助名单</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#_1">赞助者名单</a></li>
-    
-
-    </ul>
+    <a class="" href="../thanks/">赞助名单</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -120,10 +123,10 @@
     
       
     
-    <li>赞助名单</li>
+    <li>更新注意事项</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/cookieY/Yearning/edit/master/docs/thanks.md"
+        <a href="https://github.com/cookieY/Yearning/edit/master/docs/update_att.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -133,21 +136,45 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="_1">赞助者名单</h2>
-<p>感谢以下小伙伴对Yearning的赞助!相信在更多小伙伴的支持下Yearning会越来越完善！</p>
-<p>(因有些小伙伴赞助后并未取得联系。此名单并不包含所有支持赞助的小伙伴)</p>
-<p>孙龙 100元</p>
-<p>Kim 100元</p>
-<p>心机boy 100元</p>
-<p>运维那点事 66元</p>
-<p><a href="https://github.com/XWJR-Ops/">希望金融运维小分队</a> 60元</p>
-<p>三文鱼 50元</p>
-<p>下一步 21元</p>
-<p>CgnLuvLpp  10元</p>
-<p>遁一 10元</p>
-<p>蜗牛 8.88元</p>
-<p>丁一 8.88元</p>
-<p>healscm 8.88元</p>
+                <h3 id="yearning">Yearning更新注意事项：</h3>
+<p>对于没有进行表结构更改的情况。直接替换文件为新版即可</p>
+<p>python 源码替换 及 编译好的js文件替换</p>
+<p>对于进行表结构更改的情况，在理想情况下直接执行以下命令即可</p>
+<p>进入Yearing/src目录下</p>
+<p>python3 manage.py makemigrations core &amp; python3 manage.py migrate</p>
+<p>但由于django 表同步命令有时并不一定能够生效。所以必要时请根据每次更新提供的新增字段自行在对应数据表中添加对应字段</p>
+<p>django model 对应的Mysql字段</p>
+<pre><code>
+models.CharField = varchar
+
+models.TextField = text
+
+models.SmallIntegerField = tinyint
+</code></pre>
+
+<h3 id="yearning-112">Yearning 1.1.2 更新注意事项</h3>
+<p>添加表query_order表</p>
+<p>新增如下字段</p>
+<pre><code>    work_id = models.CharField(max_length=50, null=True, db_index=True)
+    username = models.CharField(max_length=100, null=True)
+    date = models.CharField(max_length=50)
+    timer = models.CharField(max_length=50)
+    instructions = models.TextField(null=True)
+    query_per = models.SmallIntegerField(null=True, default=0)
+    connection_name = models.CharField(max_length=50,null=True)  # 连接名
+    computer_room = models.CharField(max_length=50,null=True)  # 机房
+    export = models.SmallIntegerField(null=True, default=0)
+    audit = models.CharField(max_length=100, null=True)
+    time = models.CharField(max_length=100, null=True)
+
+</code></pre>
+
+<p>添加表querypermissions表</p>
+<p>新增如下字段</p>
+<pre><code>work_id = models.CharField(max_length=50, null=True, db_index=True)
+username = models.CharField(max_length=100, null=True)
+statements = models.TextField()
+</code></pre>
               
             </div>
           </div>
@@ -155,10 +182,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../about/" class="btn btn-neutral float-right" title="关于">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../question/" class="btn btn-neutral float-right" title="相关问题">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../develop/" class="btn btn-neutral" title="Yearning开发规范"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../update/" class="btn btn-neutral" title="更新日志"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -186,10 +213,10 @@
           <a href="https://github.com/cookieY/Yearning/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../develop/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../update/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../question/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

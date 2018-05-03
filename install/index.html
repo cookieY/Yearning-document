@@ -62,14 +62,14 @@
 
     <li class="toctree-l2"><a href="#_2">安装</a></li>
     
-
-    <li class="toctree-l2"><a href="#_3">注意事项</a></li>
-    
         <ul>
         
-            <li><a class="toctree-l3" href="#docker">docker安装</a></li>
+            <li><a class="toctree-l3" href="#_3">注意</a></li>
         
         </ul>
+    
+
+    <li class="toctree-l2"><a href="#_4">注意事项</a></li>
     
 
     </ul>
@@ -83,6 +83,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../update/">更新日志</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../update_att/">更新注意事项</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -147,6 +152,9 @@
 <p><code>mysql &gt;= 5.6</code></p>
 <p><code>Inception</code></p>
 <h2 id="_2">安装</h2>
+<h4 id="_3">注意</h4>
+<p>Yearning 采用的是动静分离架构,为了接口安全后端接口并不对全域开放。</p>
+<p>所以存在跨域的问题，请仔细阅读以下 配置文件说明！如配置错误将无法正常登陆！</p>
 <p>生产模式安装：</p>
 <ul>
 <li>安装 nginx mysql python3.6 (nginx,mysql推荐yum安装。python3.6官方自行下载安装)</li>
@@ -164,8 +172,9 @@ username = 数据库用户
 
 [host]
 ipaddress = 服务器ip地址:端口 (涉及跨域十分重要!!设置不正确将无法登陆!!)
-            如 本机地址为192.168.1.2 nginx设置端口为80
-            则应填写为 192.168.1.2:80 之后通过该地址访问平台。
+            例如 本机地址为192.168.1.2 nginx端口为80(端口可自己定义，定义什么端口就填写什么端口)
+            则应填写为 192.168.1.2:80 之后只能通过该地址访问平台其他地址一概无效!
+            注意！访问的是nginx的端口不是后端8000端口！
 
 [Inception]
 ip = Inception地址
@@ -181,12 +190,20 @@ backuppassword = 备份数据库密码
 LDAP_SERVER = LDAP服务地址
 LDAP_SCBASE = LDAP dc 设置 如 dc=xxx,dc=com
 LDAP_DOMAIN = LDAP域名 如 xxx.com
-LDAP_TYPE = 1  1 通过域名进行ldap认证  0 通过uid进行ldap认证
+LDAP_TYPE = 1  1 通过域名进行ldap认证  2 通过uid进行ldap认证 3 通过cn进行ldap认证
 
 [email] 邮箱推送相关设置
 username = 邮箱发件账号 如 xxxx@163.com
 password = 邮箱发件账号密码
 smtp_server = 邮箱stmp地址, 具体地址请咨询对应邮箱提供者
+
+[sql]
+
+limit = 100 查询最高的Limit数量
+
+[webhook]
+
+dingding =  权限提交,查询工单等其他非sql工单提交消息推送钉钉webhook
 </code></pre>
 
 <pre><code>pip3 install -r requirements.txt 安装相应python依赖库
@@ -195,7 +212,7 @@ python3 manage.py makemigrations core &amp;&amp; python3 manage.py migrate core 
 
 echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell 添加初始化用户
 
-echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'query': '1', 'querycon': [], 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell 初始化权限
+echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell 初始化权限
 
 
 cp -rf Yearning/webpage/dist/* $NGINX_HOME/html/   复制编译好的静态文件到nginx html目录下(如自行更改Nginx静态路径地址则将静态文件复制到对应静态文件目录下)
@@ -243,13 +260,20 @@ backuppassword = 备份数据库密码
 LDAP_SERVER = LDAP服务地址
 LDAP_SCBASE = LDAP dc 设置 如 dc=xxx,dc=com
 LDAP_DOMAIN = LDAP域名 如 xxx.com
-LDAP_TYPE = 1  1 通过域名进行ldap认证  0 通过uid进行ldap认证
+LDAP_TYPE = 1  1 通过域名进行ldap认证  2 通过uid进行ldap认证 3 通过cn进行ldap认证
 
 [email] 邮箱推送相关设置
 username = 邮箱发件账号 如 xxxx@163.com
 password = 邮箱发件账号密码
 smtp_server = 邮箱stmp地址, 具体地址请咨询对应邮箱提供者
 
+[sql]
+
+limit = 100 查询最高的Limit数量
+
+[webhook]
+
+dingding =  权限提交,查询工单等其他非sql工单提交消息推送钉钉webhook
 </code></pre>
 
 <pre><code>pip3 install -r requirements.txt
@@ -258,7 +282,7 @@ python3 manage.py makemigrations core &amp;&amp; python3 manage.py migrate core
 
 echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell
 
-echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'query': '1', 'querycon': [], 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell  初始化权限
+echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell  初始化权限
 
 cd Yearning/webpage &amp;&amp; npm install
 
@@ -269,7 +293,7 @@ python3 Yearning/runserver.py
 默认账号: admin  密码:Yearning_admin
 </code></pre>
 
-<h2 id="_3">注意事项</h2>
+<h2 id="_4">注意事项</h2>
 <p>默认超级管理用户只拥有管理页面的访问权限,其他的权限需自行增加！详情请查看使用说明用户管理</p>
 <p>由于Inception 并不原生支持pymysql，所以需更改pymysql相关源码</p>
 <p>修改 $PYTHON_HOME/lib/python3.6/site-packages/pymysql下  </p>
@@ -295,24 +319,6 @@ python3 Yearning/runserver.py
     return
 </code></pre>
 <p>注: 在install 文件夹下有已经修改的connections.py 和 cursors.py 直接替换即可</p>
-<h4 id="docker">docker安装</h4>
-<pre><code>docker run -it -d -p 80:80 -p 8000:8000 -e &quot;HOST=宿主机ip&quot; registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.0.0
-
-docker exec -it  container_id /bin/bash 
-
-echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'query': '1', 'querycon': [], 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell
-
-
-初始账号: admin  密码: Yearning_admin
-
-
-注意: 
-
-由于目前镜像并没有将数据库数据存放目录挂载到宿主机所以不建议在正式环境中使用docker
-
-建议在使用前评估及测试中使用
-
-</code></pre>
               
             </div>
           </div>

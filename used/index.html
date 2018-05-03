@@ -77,19 +77,31 @@
     <li class="toctree-l2"><a href="#dml">DML</a></li>
     
 
-    <li class="toctree-l2"><a href="#_3">数据库字典</a></li>
+    <li class="toctree-l2"><a href="#_3">查询</a></li>
     
 
-    <li class="toctree-l2"><a href="#_4">用户管理</a></li>
+    <li class="toctree-l2"><a href="#_4">数据库字典</a></li>
     
 
-    <li class="toctree-l2"><a href="#_5">数据库管理</a></li>
+    <li class="toctree-l2"><a href="#_5">用户管理</a></li>
     
 
-    <li class="toctree-l2"><a href="#_6">审核</a></li>
+    <li class="toctree-l2"><a href="#_6">数据库管理</a></li>
     
 
-    <li class="toctree-l2"><a href="#_7">执行记录</a></li>
+    <li class="toctree-l2"><a href="#_7">审核</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_8">权限审核</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_9">查询审核</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_10">查询记录</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_11">执行记录</a></li>
     
 
     </ul>
@@ -98,6 +110,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../update/">更新日志</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../update_att/">更新注意事项</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -239,7 +256,21 @@
 只能提交DML语句,系统会自动过滤非DML语句
 </code></pre>
 
-<h2 id="_3">数据库字典</h2>
+<h2 id="_3">查询</h2>
+<p><img alt="dashboard" src="../images/query_apply.png" />
+主要功能:</p>
+<ul>
+<li>查询数据</li>
+<li>导出查询数据</li>
+<li>自动补全,语法高亮</li>
+</ul>
+<p>注意事项: </p>
+<pre><code>使用查询功能需向管理员提出工单申请，管理员同意后可直接进入查询页面。
+
+点击树形目录上的表名可直接显示该表的表结构信息。
+</code></pre>
+
+<h2 id="_4">数据库字典</h2>
 <p><img alt="dashboard" src="../images/dic.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -247,7 +278,7 @@
 <li>导出数据字典(.docx文档)</li>
 </ul>
 <p>以下页面仅对admin权限组账号可见</p>
-<h2 id="_4">用户管理</h2>
+<h2 id="_5">用户管理</h2>
 <p><img alt="dashboard" src="../images/user.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -260,13 +291,14 @@
 </ul>
 <p>yearning权限划分图:</p>
 <p><img alt="" src="../images/per.png" /></p>
+<p>注意: yearning v1.1.2后采用工单提交的查询方式，所以查询权限已经取消。</p>
 <p>Yearning采用多源权限策略。</p>
 <p>由权限组及细分权限两大部分组成。</p>
 <p>权限组分为admin,guest。
 admin权限组导航栏所有页面可见,guest权限组无法可见管理相关页面</p>
 <p>细分权限为上图中的12种独立权限。所有的权限相互独立，互不影响，可随意自由组合。</p>
 <p>如: 某一个用户可以访问DML页面但只能访问test连接名，但是访问DDL页面可以访问test，testone这2个连接名，查询不准访问。诸如此类根据实际公司需要进行多样化配置</p>
-<h2 id="_5">数据库管理</h2>
+<h2 id="_6">数据库管理</h2>
 <p><img alt="dashboard" src="../images/managedb.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -285,7 +317,7 @@ email及钉钉推送开关默认关闭 开启后将启用对应推送服务
 </code></pre>
 
 <p><a href="https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.tRwLqm&amp;treeId=257&amp;articleId=105735&amp;docType=1">钉钉webhook具体使用教程</a></p>
-<h2 id="_6">审核</h2>
+<h2 id="_7">审核</h2>
 <p><img alt="dashboard" src="../images/audit.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -299,7 +331,25 @@ email及钉钉推送开关默认关闭 开启后将启用对应推送服务
 虽然在提交工单时已经采取了一定的措施避免了错误的SQL提交，但在选择同意执行前仍应该再次进行检测，确认无误后再执行。
 </code></pre>
 
-<h2 id="_7">执行记录</h2>
+<h2 id="_8">权限审核</h2>
+<p><img alt="dashboard" src="../images/permission_audit.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>权限申请工单审核 </li>
+</ul>
+<h2 id="_9">查询审核</h2>
+<p><img alt="dashboard" src="../images/query.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>查询申请工单审核 </li>
+</ul>
+<h2 id="_10">查询记录</h2>
+<p><img alt="dashboard" src="../images/query_audit.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>查看历史查询记录 </li>
+</ul>
+<h2 id="_11">执行记录</h2>
 <p><img alt="dashboard" src="../images/record.png" /></p>
 <p>主要功能:</p>
 <ul>
