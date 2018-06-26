@@ -75,6 +75,9 @@
     <li class="toctree-l2"><a href="#yearning">Yearning更新注意事项：</a></li>
     
 
+    <li class="toctree-l2"><a href="#yearning-120">Yearning 1.2.0 更新注意事项</a></li>
+    
+
     <li class="toctree-l2"><a href="#yearning-112">Yearning 1.1.2 更新注意事项</a></li>
     
 
@@ -150,6 +153,19 @@ models.CharField = varchar
 models.TextField = text
 
 models.SmallIntegerField = tinyint
+</code></pre>
+
+<h3 id="yearning-120">Yearning 1.2.0 更新注意事项</h3>
+<p>更改了 globalpermissions表结构</p>
+<pre><code>authorization = models.CharField(max_length=50, null=True, db_index=True)
+inception = JSONField(null=True)
+ldap = JSONField(null=True)
+message = JSONField(null=True)
+other = JSONField(null=True)
+</code></pre>
+
+<p>新增初始化sql</p>
+<pre><code>echo &quot;from core.models import globalpermissions; globalpermissions.objects.get_or_create(authorization='global', inception={'host': '', 'port': '', 'user': '', 'password': '', 'back_host': '', 'back_port': '', 'back_user': '', 'back_password': ''}, ldap={'type': '', 'host': '', 'sc': '', 'domain': '', 'user': '', 'password': ''}, message={'webhook': '', 'smtp_host': '', 'smtp_port': '', 'user': '', 'password': '', 'to_user': '', 'mail': False, 'ding': False}, other={'limit': '', 'con_room': ['AWS', 'Aliyun', 'Own', 'Other'], 'foce': '', 'multi': False, 'query': False, 'sensitive_list': [], 'sensitive': ''})&quot; | python3 manage.py shell
 </code></pre>
 
 <h3 id="yearning-112">Yearning 1.1.2 更新注意事项</h3>

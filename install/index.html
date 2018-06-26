@@ -153,8 +153,7 @@
 <p><code>Inception</code></p>
 <h2 id="_2">安装</h2>
 <h4 id="_3">注意</h4>
-<p>Yearning 采用的是动静分离架构,为了接口安全后端接口并不对全域开放。</p>
-<p>所以存在跨域的问题，请仔细阅读以下 配置文件说明！如配置错误将无法正常登陆！</p>
+<p>Yearning 采用的是动静分离架构,为了接口安全后端接口并不对全域开放。所以存在跨域的问题，请仔细阅读以下 配置文件说明！如配置错误将无法正常登陆！(v1.2版本以下版本存在该问题)</p>
 <p>本文档只介绍Yearning相关安装配置，对于Inceotion相关配置需自行添加。如只配置了Yearning却没有配置Inception则仍然无法正常工作。所以请确保自己已熟读inception相关文档</p>
 <p>生产模式安装（推荐）：</p>
 <ul>
@@ -176,6 +175,10 @@ ipaddress = 服务器ip地址:端口 (涉及跨域十分重要!!设置不正确�
             例如 本机地址为192.168.1.2 nginx端口为80(端口可自己定义，定义什么端口就填写什么端口)
             则应填写为 192.168.1.2:80 之后只能通过该地址访问平台其他地址一概无效!
             注意！访问的是nginx的端口不是后端8000端口！
+            (仅对于v1.2版本以下版本，对于1.2以上版本此配置信息只用来消息推送时显示平台地址）
+
+
+特别注意！ 以下配置信息为v1.2版本以下配置信息。v1.2版本及以上版本不存在以下配置信息
 
 [Inception]
 ip = Inception地址
@@ -215,7 +218,9 @@ echo &quot;from core.models import Account;Account.objects.create_user(username=
 
 echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell 初始化权限
 
-注意: 对于v1.1.2以下的版本 permissions={}内还需添加'query': '1', 'querycon': []
+
+echo &quot;from core.models import globalpermissions; globalpermissions.objects.get_or_create(authorization='global', inception={'host': '', 'port': '', 'user': '', 'password': '', 'back_host': '', 'back_port': '', 'back_user': '', 'back_password': ''}, ldap={'type': '', 'host': '', 'sc': '', 'domain': '', 'user': '', 'password': ''}, message={'webhook': '', 'smtp_host': '', 'smtp_port': '', 'user': '', 'password': '', 'to_user': '', 'mail': False, 'ding': False}, other={'limit': '', 'con_room': ['AWS', 'Aliyun', 'Own', 'Other'], 'foce': '', 'multi': False, 'query': False, 'sensitive_list': [], 'sensitive': ''})&quot; | python3 manage.py shell 初始化动态配置信息(仅对v1.2版本及以上版本)
+
 
 cp -rf Yearning/webpage/dist/* $NGINX_HOME/html/   复制编译好的静态文件到nginx html目录下(如自行更改Nginx静态路径地址则将静态文件复制到对应静态文件目录下)
 
@@ -234,65 +239,26 @@ python3 manage.py runserver 0.0.0.0:8000 启动django
 <li>安装Inception(install目录下有已经编译好的Inception可以直接运行)</li>
 <li>建立数据库 (库字符集为UTF8 )</li>
 <li>git clone https://github.com/cookieY/Yearning.git</li>
-<li>编辑 Yearning/src/deploy.conf   </li>
+<li>编辑 Yearning/src/deploy.conf (参考生产模式配置文件)</li>
 </ul>
-<pre><code>[mysql]
-db = 所创建的库名
-address = 数据库地址
-port = 数据库端口
-password = 数据库密码
-username = 数据库用户
+<pre><code>pip3 install -r requirements.txt 安装相应python依赖库
 
-[host]
-ipaddress = 服务器ip地址:8080 (涉及跨域十分重要!!设置不正确将无法登陆!!)
-            如 本机地址为192.168.1.2
-            则应填写为 192.168.1.2:8080 之后通过该地址访问平台。
+python3 manage.py makemigrations core &amp;&amp; python3 manage.py migrate core 初始化数据库
 
-[Inception]
-ip = Inception地址
-port = Inception端口
-user = Inception用户名
-password  = Inception密码
-backupdb = 备份数据库地址
-backupport = 备份数据库端口
-backupuser = 备份数据库用户名
-backuppassword = 备份数据库密码
+echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell 添加初始化用户
 
-[LDAP] LDAP相关设置
-LDAP_SERVER = LDAP服务地址
-LDAP_SCBASE = LDAP dc 设置 如 dc=xxx,dc=com
-LDAP_DOMAIN = LDAP域名 如 xxx.com
-LDAP_TYPE = 1  1 通过域名进行ldap认证  2 通过uid进行ldap认证 3 通过cn进行ldap认证
+echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell 初始化权限
 
-[email] 邮箱推送相关设置
-username = 邮箱发件账号 如 xxxx@163.com
-password = 邮箱发件账号密码
-smtp_server = 邮箱stmp地址, 具体地址请咨询对应邮箱提供者
 
-[sql]
+echo &quot;from core.models import globalpermissions; globalpermissions.objects.get_or_create(authorization='global', inception={'host': '', 'port': '', 'user': '', 'password': '', 'back_host': '', 'back_port': '', 'back_user': '', 'back_password': ''}, ldap={'type': '', 'host': '', 'sc': '', 'domain': '', 'user': '', 'password': ''}, message={'webhook': '', 'smtp_host': '', 'smtp_port': '', 'user': '', 'password': '', 'to_user': '', 'mail': False, 'ding': False}, other={'limit': '', 'con_room': ['AWS', 'Aliyun', 'Own', 'Other'], 'foce': '', 'multi': False, 'query': False, 'sensitive_list': [], 'sensitive': ''})&quot; | python3 manage.py shell 初始化动态配置信息(仅对v1.2版本及以上版本)
 
-limit = 100 查询最高的Limit数量
 
-[webhook]
-
-dingding =  权限提交,查询工单等其他非sql工单提交消息推送钉钉webhook
-</code></pre>
-
-<pre><code>pip3 install -r requirements.txt
-
-python3 manage.py makemigrations core &amp;&amp; python3 manage.py migrate core
-
-echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell
-
-echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'user': '1', 'base': '1', 'dicexport': '0'})&quot; | python3 manage.py shell  初始化权限
-
-注意: 对于v1.1.2以下的版本 permissions={}内还需添加'query': '1', 'querycon': []
 
 cd Yearning/webpage &amp;&amp; npm install
 
 python3 Yearning/runserver.py
 
-访问deploy.conf 配置文件中ipaddress 填写的地址
+访问deploy.conf 配置文件中ipaddress 填写的地址 (仅对1.2版本以下版本)
 
 默认账号: admin  密码:Yearning_admin
 </code></pre>
