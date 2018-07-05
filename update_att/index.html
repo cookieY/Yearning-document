@@ -165,6 +165,8 @@ other = JSONField(null=True)
 </code></pre>
 
 <p>新增初始化sql</p>
+<p>特别注意 core_sqlrecord表中是否存在backup_dbname字段！如没有该字段请添加，不然将无法显示回滚语句！</p>
+<p>该字段为varchar(100)类型。</p>
 <pre><code>echo &quot;from core.models import globalpermissions; globalpermissions.objects.get_or_create(authorization='global', inception={'host': '', 'port': '', 'user': '', 'password': '', 'back_host': '', 'back_port': '', 'back_user': '', 'back_password': ''}, ldap={'type': '', 'host': '', 'sc': '', 'domain': '', 'user': '', 'password': ''}, message={'webhook': '', 'smtp_host': '', 'smtp_port': '', 'user': '', 'password': '', 'to_user': '', 'mail': False, 'ding': False}, other={'limit': '', 'con_room': ['AWS', 'Aliyun', 'Own', 'Other'], 'foce': '', 'multi': False, 'query': False, 'sensitive_list': [], 'sensitive': ''})&quot; | python3 manage.py shell
 </code></pre>
 
