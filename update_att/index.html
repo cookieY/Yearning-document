@@ -158,7 +158,7 @@ models.SmallIntegerField = tinyint
 <h3 id="yearning-120">Yearning 1.2.0 更新注意事项</h3>
 <p>更改了 globalpermissions表结构</p>
 <pre><code>authorization = models.CharField(max_length=50, null=True, db_index=True)
-inception = JSONField(null=True)
+inception = JSONField(null=True)  该字段类型参考 core_grained表中permission字段
 ldap = JSONField(null=True)
 message = JSONField(null=True)
 other = JSONField(null=True)
