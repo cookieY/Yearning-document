@@ -8,7 +8,7 @@
   
   <meta name="author" content="Cookie">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>使用 - Yearning_guide</title>
+  <title>各功能模块说明 - Yearning_guide</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u4f7f\u7528";
+    var mkdocs_page_name = "\u5404\u529f\u80fd\u6a21\u5757\u8bf4\u660e";
     var mkdocs_page_input_path = "used.md";
     var mkdocs_page_url = "/used/";
   </script>
@@ -57,9 +57,14 @@
     <a class="" href="../install/">安装</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../process/">使用流程</a>
+	    </li>
+          
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">使用</a>
+    <a class="current" href="./">各功能模块说明</a>
     <ul class="subnav">
             
     <li class="toctree-l2"><a href="#dashboard">Dashboard</a></li>
@@ -105,6 +110,15 @@
     
 
     <li class="toctree-l2"><a href="#_12">设置</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_13">权限组</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#yearning">yearning细粒化权限划分图</a></li>
+        
+        </ul>
     
 
     </ul>
@@ -162,7 +176,7 @@
     
       
     
-    <li>使用</li>
+    <li>各功能模块说明</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/cookieY/Yearning/edit/master/docs/used.md"
@@ -261,22 +275,21 @@
 
 <h2 id="_3">查询</h2>
 <p><img alt="dashboard" src="../images/query_apply.png" />
+<img alt="dashboard" src="../images/query_list.png" />
 主要功能:</p>
 <ul>
 <li>提交查询工单</li>
 <li>导出查询数据</li>
-<li>自动补全,语法高亮</li>
+<li>自动补全关键字，库名，表名,语法高亮</li>
 </ul>
 <p>注意事项: </p>
-<pre><code>使用查询功能需向管理员提出工单申请，管理员同意后可直接进入查询页面。
-
-对于每一次的查询都是有时限的。时间一过将无法查询必须重新申请工单
-
-时限开始时间为管理员同意该查询工单开始计算。
-
-在时限框内如输入非数字字符则一律自动转化为1分钟
+<pre><code>如开启查询审核功能，使用查询功能时需向管理员提出工单申请，管理员同意后可直接进入查询页面。
 
 点击树形目录上的表名可直接显示该表的表结构信息。
+
+如需提前终止查询可点击结束会话按钮
+
+所有的查询语句都会以查询工单的形式进行保存，用于审计。
 </code></pre>
 
 <h2 id="_4">数据库字典</h2>
@@ -294,22 +307,12 @@
 <p><img alt="dashboard" src="../images/user.png" /></p>
 <p>主要功能:</p>
 <ul>
-<li>
-<p>添加，编辑权限，删除用户信息</p>
-</li>
-<li>
-<p>12种不同的独立权限选项</p>
-</li>
+<li>添加，编辑权限组，删除用户信息</li>
 </ul>
-<p>yearning权限划分图:</p>
-<p><img alt="" src="../images/per.png" /></p>
-<p>注意: yearning v1.1.2后采用工单提交的查询方式，所以查询权限已经取消。</p>
-<p>Yearning采用多源权限策略。</p>
-<p>由权限组及细分权限两大部分组成。</p>
-<p>权限组分为admin,guest。
-admin权限组导航栏所有页面可见,guest权限组无法可见管理相关页面</p>
-<p>细分权限为上图中的11种独立权限。所有的权限相互独立，互不影响，可随意自由组合。</p>
-<p>如: 某一个用户可以访问DML页面但只能访问test连接名，但是访问DDL页面可以访问test，testone这2个连接名，查询不准访问。诸如此类根据实际公司需要进行多样化配置</p>
+<p>注意事项: </p>
+<pre><code>如开启多级审核，角色下拉框将会出现审核人角色，该角色为最终执行工单的角色。关闭多级审核开关后原有的审核人角色不会自动改变如需使用请自行更改对应角色。
+</code></pre>
+
 <h2 id="_6">数据库管理</h2>
 <p><img alt="dashboard" src="../images/managedb.png" /></p>
 <p>主要功能:</p>
@@ -387,6 +390,23 @@ email及钉钉推送开关默认关闭 开启后将启用对应推送服务
 <p>注意事项: </p>
 <pre><code>只有超级管理员才可访问(默认超级管理员为用户表id为1的用户)
 </code></pre>
+
+<h2 id="_13">权限组</h2>
+<p><img alt="dashboard" src="../images/authgroup.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>划分权限组(权限组为可组合模式，一个用户可以继承多个权限组提供的权限)</li>
+</ul>
+<p>注意事项: </p>
+<pre><code>只有超级管理员才可访问(默认超级管理员为用户表id为1的用户)
+</code></pre>
+
+<h3 id="yearning">yearning细粒化权限划分图</h3>
+<p><img alt="" src="../images/per.png" /></p>
+<p>Yearning采用多源权限策略。</p>
+<p>由角色及细分权限两大部分组成。</p>
+<p>角色分为admin,guest，audit(开启多级审核开关后出现的角色)。admin及audit角色，导航栏所有页面可见,guest权限组无法可见管理相关页面</p>
+<p>细分权限为上图中的11种独立权限。所有的权限相互独立，互不影响，可随意自由组合。</p>
               
             </div>
           </div>
@@ -397,7 +417,7 @@ email及钉钉推送开关默认关闭 开启后将启用对应推送服务
         <a href="../update/" class="btn btn-neutral float-right" title="更新日志">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../install/" class="btn btn-neutral" title="安装"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../process/" class="btn btn-neutral" title="使用流程"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -425,7 +445,7 @@ email及钉钉推送开关默认关闭 开启后将启用对应推送服务
           <a href="https://github.com/cookieY/Yearning/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../process/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../update/" style="color: #fcfcfc">Next &raquo;</a></span>

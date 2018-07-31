@@ -59,7 +59,12 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../used/">使用</a>
+    <a class="" href="../process/">使用流程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../used/">各功能模块说明</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -73,6 +78,9 @@
     <ul class="subnav">
             
     <li class="toctree-l2"><a href="#yearning">Yearning更新注意事项：</a></li>
+    
+
+    <li class="toctree-l2"><a href="#yearning-130-sql">Yearning 1.3.0 更新sql语句</a></li>
     
 
     <li class="toctree-l2"><a href="#yearning-120">Yearning 1.2.0 更新注意事项</a></li>
@@ -145,14 +153,29 @@
 <p>对于进行表结构更改的情况，在理想情况下直接执行以下命令即可</p>
 <p>进入Yearing/src目录下</p>
 <p>python3 manage.py makemigrations core &amp; python3 manage.py migrate</p>
-<p>但由于django 表同步命令有时并不一定能够生效。所以必要时请根据每次更新提供的新增字段自行在对应数据表中添加对应字段</p>
+<p>但由于django 表同步命令有时并不一定能够生效。所以必要时请根据每次更新提供的字段修改信息自行在对应数据表中修改对应字段</p>
 <p>django model 对应的Mysql字段</p>
 <pre><code>
 models.CharField = varchar
 
+如 models.CharField(max_length=100, null=True) 转换为sql为
+
+varchar(100) NOT NULL
+
 models.TextField = text
 
 models.SmallIntegerField = tinyint
+</code></pre>
+
+<h3 id="yearning-130-sql">Yearning 1.3.0 更新sql语句</h3>
+<p>新增：</p>
+<pre><code>ALTER TABLE `Yearning`.`core_account` ADD COLUMN `auth_group` varchar(100) NOT NULL
+
+ALTER TABLE `Yearning`.`core_applygrained` ADD COLUMN `auth_group` varchar(100) NOT NULL
+
+ALTER TABLE `Yearning`.`core_databaselist` DROP COLUMN url
+
+ALTER TABLE `Yearning`.`core_query_order` DROP COLUMN timer
 </code></pre>
 
 <h3 id="yearning-120">Yearning 1.2.0 更新注意事项</h3>
