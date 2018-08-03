@@ -167,17 +167,18 @@
 <p><code>node &gt;= 6.10 (仅开发模式安装)</code></p>
 <p><code>nginx</code></p>
 <p><code>mysql &gt;= 5.6</code></p>
-<p><code>Inception</code></p>
+<p><code>Inception</code> 可直接使用install目录下编译好的。</p>
 <h2 id="v130">v1.3.0版本安装</h2>
 <h4 id="_2">注意</h4>
 <p>从v1.3.0版本开始将采取docker运行的方式，不再提供普通安装教程</p>
 <h6 id="_3">安装：</h6>
-<p>1.请准备一个能被docker访问的mysql数据库，且已创建Yearning库，字符集为uft-8</p>
-<p>2.在Yearning库中导入当前版本的sql文件（文件在install目录下格式为x-x-x.sql,例如1.3.0版本的sql就为1-3-0.sql）</p>
-<pre><code>docker run -d -e HOST=&quot;主机地址&quot; -e MYSQL_ADDR=&quot;mysql地址&quot; -e MYSQL_USER=&quot;mysql用户名&quot; -e MYSQL_PASSWORD=&quot;mysql密码&quot; -p8080:80 -p8000:8000 registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.0
+<p>1.下载Yearning,进入install/yearning-docker-compose目录</p>
+<pre><code>docker-compose up -d
 </code></pre>
 
-<p>请注意 8000端口映射不可更改端口</p>
+<p>请注意本地不要占用8080和8000端口  如需要更改端口可再docker-compose.yml文件中更改，3306和8000端口不可更改！</p>
+<p>之后通过访问8080端口。 </p>
+<p>默认用户admin  密码: Yearning_admin</p>
 <h2 id="v120">v1.2.0版本安装教程</h2>
 <h4 id="_4">注意</h4>
 <p>本文档只介绍Yearning相关安装配置，对于Inceotion相关配置需自行添加。如只配置了Yearning却没有配置Inception则仍然无法正常工作。所以请确保自己已熟读inception相关文档。</p>
