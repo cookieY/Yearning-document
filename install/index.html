@@ -179,6 +179,13 @@
 <p>请注意本地不要占用8080和8000端口  如需要更改端口可再docker-compose.yml文件中更改，3306和8000端口不可更改！</p>
 <p>之后通过访问8080端口。 </p>
 <p>默认用户admin  密码: Yearning_admin</p>
+<h5 id="mysql">使用外部mysql</h5>
+<p>docker-compose中已经包含了mysql，如果你想使用外部mysql,可使用以下步骤：</p>
+<pre><code>1. 新建Yearning库，设置字符集为UTF-8，然后在Yearning库中导入sql文件(Yearning/install/yearning-docker-compose/init-sql)
+
+2. docker run -d -e HOST=主机地址 -e MYSQL_ADDR=mysql地址 -e MYSQL_USER=mysql用户名 -e MYSQL_PASSWORD=mysql密码 -p8080:80 -p8000:8000 registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.0
+</code></pre>
+
 <h2 id="v120">v1.2.0版本安装教程</h2>
 <h4 id="_4">注意</h4>
 <p>本文档只介绍Yearning相关安装配置，对于Inceotion相关配置需自行添加。如只配置了Yearning却没有配置Inception则仍然无法正常工作。所以请确保自己已熟读inception相关文档。</p>
