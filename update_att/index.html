@@ -174,6 +174,8 @@ models.SmallIntegerField = tinyint
 <p>新增：</p>
 <pre><code class="sql">ALTER TABLE `Yearning`.`core_account` ADD COLUMN `real_name` varchar(100) NOT NULL
 
+ALTER TABLE `Yearning`.`core_sqlorder` ADD COLUMN `real_name` varchar(100) NOT NULL
+
 ALTER TABLE `Yearning`.`core_sqlorder` CHANGE COLUMN text longtext NOT NULL
 
 ALTER TABLE `Yearning`.`core_sqlorder` ADD COLUMN `rejected` longtext NOT NULL
