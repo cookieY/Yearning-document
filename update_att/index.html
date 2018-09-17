@@ -80,6 +80,9 @@
     <li class="toctree-l2"><a href="#yearning">Yearning更新注意事项：</a></li>
     
 
+    <li class="toctree-l2"><a href="#yearning-131-sql">Yearning 1.3.1 更新sql语句</a></li>
+    
+
     <li class="toctree-l2"><a href="#yearning-130-sql">Yearning 1.3.0 更新sql语句</a></li>
     
 
@@ -165,6 +168,18 @@ varchar(100) NOT NULL
 models.TextField = text
 
 models.SmallIntegerField = tinyint
+</code></pre>
+
+<h3 id="yearning-131-sql">Yearning 1.3.1 更新sql语句</h3>
+<p>新增：</p>
+<pre><code class="sql">ALTER TABLE `Yearning`.`core_account` ADD COLUMN `real_name` varchar(100) NOT NULL
+
+ALTER TABLE `Yearning`.`core_sqlorder` CHANGE COLUMN text longtext NOT NULL
+
+ALTER TABLE `Yearning`.`core_sqlorder` ADD COLUMN `rejected` longtext NOT NULL
+
+DROP TABLE core_usermessage ;
+
 </code></pre>
 
 <h3 id="yearning-130-sql">Yearning 1.3.0 更新sql语句</h3>
