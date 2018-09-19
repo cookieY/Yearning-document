@@ -60,7 +60,7 @@
     <li class="toctree-l2"><a href="#_1">注意</a></li>
     
 
-    <li class="toctree-l2"><a href="#v130">v1.3.0版本安装</a></li>
+    <li class="toctree-l2"><a href="#v130">v1.3.0及以上版本安装</a></li>
     
         <ul>
         
@@ -121,6 +121,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../compay/">使用企业</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../thanks/">赞助名单</a>
 	    </li>
           
@@ -167,7 +172,7 @@
                 <h2 id="_1">注意</h2>
 <p>本文档只介绍Yearning相关安装配置，对于Inceotion相关配置需自行添加。如只配置了Yearning却没有配置Inception则仍然无法正常工作。所以请确保自己已熟读inception相关文档。</p>
 <p>如有任何问题 请查看 相关问题页面 获取Q&amp;A 或在群共享内下载Q&amp;A.pdf</p>
-<h2 id="v130">v1.3.0版本安装</h2>
+<h2 id="v130">v1.3.0及以上版本安装</h2>
 <p>从v1.3.0版本开始将采取docker运行的方式，不再提供普通安装教程</p>
 <h6 id="_2">安装：</h6>
 <p>1.下载Yearning,进入install/yearning-docker-compose目录</p>
@@ -182,7 +187,7 @@
 <p>docker-compose中已经包含了mysql，如果你想使用外部mysql,可使用以下步骤：</p>
 <pre><code>1. 新建Yearning库，设置字符集为UTF-8，然后在Yearning库中导入sql文件(Yearning/install/yearning-docker-compose/init-sql)
 
-2. docker run -d -e HOST=主机地址 -e MYSQL_ADDR=mysql地址 -e MYSQL_USER=mysql用户名 -e MYSQL_PASSWORD=mysql密码 -p8080:80 -p8000:8000 registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.0
+2. docker run -d -e HOST=主机地址 -e MYSQL_ADDR=mysql地址 -e MYSQL_USER=mysql用户名 -e MYSQL_PASSWORD=mysql密码 -p8080:80 -p8000:8000 registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.1
 </code></pre>
 
 <h2 id="v120">v1.2.0版本安装教程</h2>
