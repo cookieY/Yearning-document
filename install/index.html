@@ -184,7 +184,7 @@
 <p>默认用户admin  密码: Yearning_admin</p>
 <p>登陆后请通过设置页面设置inception及其他配置信息</p>
 <h5 id="mysql">使用外部mysql</h5>
-<p>docker-compose中已经包含了mysql，如果你想使用外部mysql,可使用以下步骤：</p>
+<p>docker-compose中已经包含了mysql且挂载本地目录，不存在容器销毁数据消失的问题，但如果你还是想使用外部mysql,可使用以下步骤：</p>
 <pre><code>1. 新建Yearning库，设置字符集为UTF-8，然后在Yearning库中导入sql文件(Yearning/install/yearning-docker-compose/init-sql)
 
 2. docker run -d -e HOST=主机地址 -e MYSQL_ADDR=mysql地址 -e MYSQL_USER=mysql用户名 -e MYSQL_PASSWORD=mysql密码 -p8080:80 -p8000:8000 registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.1

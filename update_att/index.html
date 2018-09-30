@@ -79,6 +79,12 @@
             
     <li class="toctree-l2"><a href="#yearning">Yearning更新注意事项：</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_1">如何更新：</a></li>
+        
+        </ul>
+    
 
     <li class="toctree-l2"><a href="#yearning-131-sql">Yearning 1.3.1 更新sql语句</a></li>
     
@@ -156,23 +162,21 @@
             <div class="section">
               
                 <h3 id="yearning">Yearning更新注意事项：</h3>
-<p>对于没有进行表结构更改的情况。直接替换文件为新版即可</p>
-<p>python 源码替换 及 编译好的js文件替换</p>
-<p>对于进行表结构更改的情况，在理想情况下直接执行以下命令即可</p>
-<p>进入Yearing/src目录下</p>
-<p>python3 manage.py makemigrations core &amp; python3 manage.py migrate</p>
-<p>但由于django 表同步命令有时并不一定能够生效。所以必要时请根据每次更新提供的字段修改信息自行在对应数据表中修改对应字段</p>
-<p>django model 对应的Mysql字段</p>
-<pre><code class="python">
-models.CharField = varchar
+<p>1.3版本后yearning采用容器化部署，更新也将采用容器化部署的方式进行。</p>
+<h4 id="_1">如何更新：</h4>
+<p>适用于docker-compose 以及连接外部mysql安装</p>
+<p>1.下载新的yearning包</p>
+<p>2.stop并删除yearning容器</p>
+<pre><code class="bash">cd Yearning/install/yearning-docker-compose
+docker-compose stop yearning
+docker-compose rm yearning
+</code></pre>
 
-如 models.CharField(max_length=100, null=True) 转换为sql为
+<p>3.连接容器mysql(如果是外部mysql安装那就是外部mysql)执行版本更新sql语句(所有的版本的更新sq都会在下面写明)</p>
+<p>4.启动yearning容器</p>
+<pre><code class="bash">cd Yearning/install/yearning-docker-compose
 
-varchar(100) NOT NULL
-
-models.TextField = text
-
-models.SmallIntegerField = tinyint
+docker-compose up -d yearning
 </code></pre>
 
 <h3 id="yearning-131-sql">Yearning 1.3.1 更新sql语句</h3>
