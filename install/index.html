@@ -179,7 +179,7 @@
 <pre><code>docker-compose up -d
 </code></pre>
 
-<p>请注意本地不要占用8080和8000端口  如需要更改端口可再docker-compose.yml文件中更改，3306和8000端口不可更改！</p>
+<p>请注意本地不要占用8080和8000端口  如需要更改端口可再docker-compose.yml文件中更改，3306和8000端口不可更改！docker-compose并不能确定容器的依赖关系，所以如果执行后无法登陆，请使用docker-compose restart yearning重启容器</p>
 <p>之后访问8080端口。 </p>
 <p>默认用户admin  密码: Yearning_admin</p>
 <p>登陆后请通过设置页面设置inception及其他配置信息</p>
