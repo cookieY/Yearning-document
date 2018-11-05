@@ -71,19 +71,7 @@
         </ul>
     
 
-    <li class="toctree-l2"><a href="#v120">v1.2.0版本安装教程</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#_3">相关依赖</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#_4">以开发开发模式：</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_5">注意事项</a></li>
+    <li class="toctree-l2"><a href="#_3">注意事项</a></li>
     
 
     </ul>
@@ -180,7 +168,7 @@
 <pre><code>docker-compose up -d
 </code></pre>
 
-<p>请注意本地不要占用8080和8000端口  如需要更改端口可再docker-compose.yml文件中更改，3306和8000端口不可更改！docker-compose并不能确定容器的依赖关系，所以如果执行后无法登陆，请使用docker-compose restart yearning重启容器</p>
+<p>请注意本地不要占用8080和8000端口  如需要更改端口可再docker-compose.yml文件中更改，3306和8000端口不可更改！</p>
 <p>之后访问8080端口。 </p>
 <p>默认用户admin  密码: Yearning_admin</p>
 <p>登陆后请通过设置页面设置inception及其他配置信息</p>
@@ -188,105 +176,11 @@
 <p>docker-compose中已经包含了mysql且挂载本地目录，不存在容器销毁数据消失的问题，但如果你还是想使用外部mysql,可使用以下步骤：</p>
 <pre><code>1. 新建Yearning库，设置字符集为UTF-8，然后在Yearning库中导入sql文件(Yearning/install/yearning-docker-compose/init-sql)
 
-2. docker run -d -e HOST=主机地址 -e MYSQL_ADDR=mysql地址 -e MYSQL_USER=mysql用户名 -e MYSQL_PASSWORD=mysql密码 -p8080:80 -p8000:8000 registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.2
+2. docker run -d -e HOST=主机地址 -e MYSQL_ADDR=mysql地址 -e MYSQL_USER=mysql用户名 -e MYSQL_PASSWORD=mysql密码 -p8080:80 -p8000:8000 registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.3
 </code></pre>
 
-<h2 id="v120">v1.2.0版本安装教程</h2>
-<h4 id="_3">相关依赖</h4>
-<p><code>python &gt;= 3.6</code></p>
-<p><code>node &gt;= 6.10 (仅开发模式安装)</code></p>
-<p><code>nginx</code></p>
-<p><code>mysql &gt;= 5.6</code></p>
-<p><code>Inception</code> 可直接使用install目录下编译好的.</p>
-<p>生产模式安装（推荐）：</p>
-<ul>
-<li>安装 nginx mysql python3.6 (nginx,mysql推荐yum安装。python3.6官方自行下载安装)</li>
-<li>安装Inception(install目录下有已经编译好的Inception可以直接运行)</li>
-<li>建立数据库 (库字符集必须为UTF8或utf8mb4，不然会有未知错误)</li>
-<li>git clone https://github.com/cookieY/Yearning.git</li>
-<li>编辑 Yearning/src/deploy.conf       </li>
-<li>由于Inception 并不原生支持pymysql，所以需更改pymysql相关源码 
-  注: 在install 文件夹下有已经修改的connections.py 和 cursors.py 直接替换即可</li>
-</ul>
-<pre><code>[mysql]
-db = 所创建的库名
-address = 数据库地址
-port = 数据库端口
-password = 数据库密码
-username = 数据库用户
-
-[host]
-ipaddress = 服务器ip地址   （消息推送时显示平台地址）
-
-</code></pre>
-
-<pre><code>pip3 install -r requirements.txt 安装相应python依赖库
-
-python3 manage.py makemigrations core &amp;&amp; python3 manage.py migrate core 初始化数据库
-
-echo &quot;from core.models import Account;Account.objects.create_user(username='admin', password='Yearning_admin', group='admin',is_staff=1)&quot; | python3 manage.py shell 添加初始化用户
-
-echo &quot;from core.models import grained;grained.objects.get_or_create(username='admin', permissions={'person': [], 'ddl': '1', 'ddlcon': [], 'dml': '1', 'dmlcon': [], 'dic': '1', 'diccon': [], 'dicedit': '0', 'user': '1', 'base': '1', 'dicexport': '0', 'query': '1', 'querycon': []})&quot; | python3 manage.py shell 初始化权限
-
-
-echo &quot;from core.models import globalpermissions; globalpermissions.objects.get_or_create(authorization='global', inception={'host': '', 'port': '', 'user': '', 'password': '', 'back_host': '', 'back_port': '', 'back_user': '', 'back_password': ''}, ldap={'type': '', 'host': '', 'sc': '', 'domain': '', 'user': '', 'password': ''}, message={'webhook': '', 'smtp_host': '', 'smtp_port': '', 'user': '', 'password': '', 'to_user': '', 'mail': False, 'ding': False}, other={'limit': '', 'con_room': ['AWS', 'Aliyun', 'Own', 'Other'], 'foce': '', 'multi': False, 'query': False, 'sensitive_list': [], 'sensitive': ''})&quot; | python3 manage.py shell 初始化动态配置信息
-
-
-cp -rf Yearning/webpage/dist/* $NGINX_HOME/html/   复制编译好的静态文件到nginx html目录下(如自行更改Nginx静态路径地址则将静态文件复制到对应静态文件目录下)
-
-systemctl start nginx  启动nginx
-
-$PYTHON_HOME/bin/gunicorn  settingConf.wsgi:application -c gunicorn.conf 启动django
-
-默认账号: admin  密码:Yearning_admin
-</code></pre>
-
-<h2 id="_4">以开发开发模式：</h2>
-<ul>
-<li>安装 node mysql python3.6 (mysql推荐yum安装。python3.6,node官方自行下载安装)</li>
-<li>安装Inception(install目录下有已经编译好的Inception可以直接运行)</li>
-<li>建立数据库 (库字符集为UTF8 )</li>
-<li>git clone https://github.com/cookieY/Yearning.git</li>
-<li>编辑 Yearning/src/deploy.conf (参考生产模式配置文件)</li>
-</ul>
-<pre><code>
-于生产模式不同在于不需要进行nginx相关设置 及
-
-python3 manage.py runserver 0.0.0.0:8000来启动项目而使用以下方法启动：
-
-cd Yearning/webpage &amp;&amp; npm install
-
-python3 Yearning/runserver.py
-
-默认账号: admin  密码:Yearning_admin
-</code></pre>
-
-<h2 id="_5">注意事项</h2>
+<h2 id="_3">注意事项</h2>
 <p>默认超级管理用户只拥有管理页面的访问权限,其他的权限需自行增加！详情请查看使用说明用户管理</p>
-<p>由于Inception 并不原生支持pymysql，所以需更改pymysql相关源码</p>
-<p>注: 在install 文件夹下有已经修改的connections.py 和 cursors.py 直接替换即可</p>
-<p>修改 $PYTHON_HOME/lib/python3.6/site-packages/pymysql下  </p>
-<p>connections.py 和  cursors.py 两个文件</p>
-<p>找到 connections.py 1108行</p>
-<pre><code>    if int(self.server_version.split('.', 1)[0]) &gt;= 5:
-            self.client_flag |= CLIENT.MULTI_RESULTS
-</code></pre>
-<p>更改为</p>
-<pre><code>    try:
-        if int(self.server_version.split('.', 1)[0]) &gt;= 5:
-            self.client_flag |= CLIENT.MULTI_RESULTS
-    except:
-        if self.server_version.split('.', 1)[0] &gt;= 'Inception2':
-            self.client_flag |= CLIENT.MULTI_RESULTS
-</code></pre>
-<p>找到 cursors.py 345行 </p>
-<pre><code>if self._result and (self._result.has_next or not self._result.warning_count):
-        return
-</code></pre>
-<p>更改为</p>
-<pre><code> if self._result:
-    return
-</code></pre>
               
             </div>
           </div>
