@@ -8,7 +8,7 @@
   
   <meta name="author" content="Cookie">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>相关问题 - Yearning_guide</title>
+  <title>赞助及需求定制 - Yearning_guide</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u76f8\u5173\u95ee\u9898";
-    var mkdocs_page_input_path = "question.md";
-    var mkdocs_page_url = "/question/";
+    var mkdocs_page_name = "\u8d5e\u52a9\u53ca\u9700\u6c42\u5b9a\u5236";
+    var mkdocs_page_input_path = "sponsorship.md";
+    var mkdocs_page_url = "/sponsorship/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -77,17 +77,35 @@
     <a class="" href="../update_att/">更新注意事项</a>
 	    </li>
           
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">相关问题</a>
-    <ul class="subnav">
-            
-    </ul>
-	    </li>
-          
             <li class="toctree-l1">
 		
-    <a class="" href="../sponsorship/">赞助及需求定制</a>
+    <a class="" href="../question/">相关问题</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">赞助及需求定制</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">赞助与支持</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_2">赞助后你可以得到的</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_3">定制化需求</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_4">赞助地址:</a></li>
+        
+        </ul>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -132,10 +150,10 @@
     
       
     
-    <li>相关问题</li>
+    <li>赞助及需求定制</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/cookieY/Yearning/edit/master/docs/question.md"
+        <a href="https://github.com/cookieY/Yearning/edit/master/docs/sponsorship.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -145,74 +163,25 @@
           <div role="main">
             <div class="section">
               
-                <p>问题1.</p>
-<p>命令行可以连接inception  设置页面也配置正确。为什么报Inception无法连接？</p>
-<pre><code>解答： 请检查是否替换pymysql两个源代码文件。具体查看安装教程 注意事项
-</code></pre>
-
-<p>问题2.</p>
-<p>为什么没有回滚语句？</p>
-<pre><code>解答: 请检查设置页面 inception备份配置信息是否填写正确以及inception配置文件中备份相关配置是否正确。
-     目标库是否开启binlog及row模式。目标表是否有主键。
-</code></pre>
-
-<p>问题3.安装完成 为什么无法登陆？</p>
-<pre><code>解答: 极有可能为跨域问题。请仔细阅读安装教程中deploy.conf设置部分（仅对于1.2以下版本）
-</code></pre>
-
-<p>问题4.为什么无法显示添加的连接名和审核人？</p>
-<pre><code>解答: Yearning采用了强权限管理。所有的连接名都必须赋权给用户后，该用户才有权限查看。
-     具体请看使用说明,用户管理一项.
-</code></pre>
-
-<p>问题5.为什么无法生成字典？</p>
-<pre><code>解答: 绝大多数原因为yearning数据库字符集为Latin而目标库内有中文字符引起的字符集不兼容问题
-     请在安装时设置yearning库为utf-8字符集以免发生类似问题。
-</code></pre>
-
-<p>问题6.为什么点击查询报错？</p>
-<pre><code>解答: 请在设置页面设置limit最大值
-</code></pre>
-
-<p>问题7.为什么给与用户1分钟的查询权限5分钟还没收回？</p>
-<pre><code>解答:  1.2以下版本请注意，用户申请的查询时限不能大于yearning所在的mysql库wait_time的值。
-      除此之外，请注意不要在查询期间重启 关闭 django服务，否则时限将会失效。
-      如工单无法收回，可直接删除此工单解决该问题
-</code></pre>
-
-<p>问题8.开启多级审核，为什么审核人选择执行人并点击同意后这个工单就不见了？</p>
-<pre><code>解答:  当点击同意后，该工单自动转移到了执行人处，所以审核人不再拥有该工单信息。
-       之后的执行信息等也只会在执行人处显示而不会在审核人处
-</code></pre>
-
-<p>问题9.为什么admin用户无法收到权限工单及无法访问设置页面？</p>
-<pre><code>解答:  yearning默认权限工单展示及设置页面只开放给用户表id=1的超级管理员用户。请检查用户id是否为1
-</code></pre>
-
-<p>问题10.为什么有些页面打开报错接收不到数据，而且后台也无错误日志信息？</p>
-<pre><code>解答:  由于yearning使用es6规范语法编写。仅支持现代浏览器，请升级你的浏览器，推荐使用chrome最新版进行体验
-</code></pre>
-
-<p>问题11.为什么osc无法执行或无法查看osc进度？</p>
-<pre><code>解答:  
-
-1.inception通过对ddl生成sha1值的方式对每条ddl语句进行osc进度探测。所以请选择对应ddl语句的sha1值。
-
-2.确认Inception打开osc开关并正确配置pt
-
-3.如果上一次在同一张表内执行过osc且中断的，应该自行前往相应表删除pt遗留的触发器，之后才能进行osc操作
-</code></pre>
-
-<p>问题12.为什么1.3.1以上无法注册用户</p>
-<pre><code>由于1.3.1版本开始开启用户自助注册功能，所以为了安全性，不管是用户自主注册还是管理员手动添加都必须满足以下条件后才能注册用户成功:
-
-1.设置页面填写了正确的stmp配置信息，且测试邮件无误
-
-2.设置页面填写了允许的邮箱后缀范围，只有注册时填写的邮箱地址后缀在设置的后缀范围之内才可注册
-
-3.用户填写的邮箱为真实邮箱且可正常收取邮件
-
-</code></pre>
+                <h2 id="_1">赞助与支持</h2>
+<p>Yearning的发展离不开社区的力量。赞助Yearning 使作者持续完善并开发新的功能</p>
+<h3 id="_2">赞助后你可以得到的</h3>
+<ul>
+<li>
+<p>联系作者将自己的名字添加到赞助者名单中                </p>
+</li>
+<li>
+<p>对于大力赞助的企业与个人，可联系作者将公司或个人logo添加到项目首页README当中，并优先考虑对该企业或个人的需求进行开发</p>
+</li>
+</ul>
+<h2 id="_3">定制化需求</h2>
+<p>企业可根据实际需要向Yearning作者寻求定制功能服务。</p>
+<p>具体事宜请通过邮箱及Q群私聊群主</p>
+<p>电邮：im@supermancookie.com</p>
+<p>Q群：103674679</p>
+<h3 id="_4">赞助地址:</h3>
+<p><img alt="alipay" src="../images/alipay.jpg" /></p>
+<p><img alt="wechat" src="../images/wechat.jpg" /></p>
               
             </div>
           </div>
@@ -220,10 +189,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../sponsorship/" class="btn btn-neutral float-right" title="赞助及需求定制">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../thanks/" class="btn btn-neutral float-right" title="赞助名单">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../update_att/" class="btn btn-neutral" title="更新注意事项"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../question/" class="btn btn-neutral" title="相关问题"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -251,10 +220,10 @@
           <a href="https://github.com/cookieY/Yearning/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../update_att/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../question/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../sponsorship/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../thanks/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
