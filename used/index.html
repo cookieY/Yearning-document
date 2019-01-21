@@ -76,43 +76,37 @@
     <li class="toctree-l2"><a href="#ddl">DDL</a></li>
     
 
-    <li class="toctree-l2"><a href="#_2">索引修改</a></li>
-    
-
     <li class="toctree-l2"><a href="#dml">DML</a></li>
     
 
-    <li class="toctree-l2"><a href="#_3">查询</a></li>
+    <li class="toctree-l2"><a href="#_2">查询</a></li>
     
 
-    <li class="toctree-l2"><a href="#_4">数据库字典</a></li>
+    <li class="toctree-l2"><a href="#_3">用户管理</a></li>
     
 
-    <li class="toctree-l2"><a href="#_5">用户管理</a></li>
+    <li class="toctree-l2"><a href="#_4">数据库管理</a></li>
     
 
-    <li class="toctree-l2"><a href="#_6">数据库管理</a></li>
+    <li class="toctree-l2"><a href="#_5">审核</a></li>
     
 
-    <li class="toctree-l2"><a href="#_7">审核</a></li>
+    <li class="toctree-l2"><a href="#_6">权限审核</a></li>
     
 
-    <li class="toctree-l2"><a href="#_8">权限审核</a></li>
+    <li class="toctree-l2"><a href="#_7">查询审核</a></li>
     
 
-    <li class="toctree-l2"><a href="#_9">查询审核</a></li>
+    <li class="toctree-l2"><a href="#_8">查询记录</a></li>
     
 
-    <li class="toctree-l2"><a href="#_10">查询记录</a></li>
+    <li class="toctree-l2"><a href="#_9">执行记录</a></li>
     
 
-    <li class="toctree-l2"><a href="#_11">执行记录</a></li>
+    <li class="toctree-l2"><a href="#_10">设置</a></li>
     
 
-    <li class="toctree-l2"><a href="#_12">设置</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_13">权限组</a></li>
+    <li class="toctree-l2"><a href="#_11">权限组</a></li>
     
         <ul>
         
@@ -235,38 +229,13 @@
 <p><img alt="dashboard" src="../images/alter_ddl.png" /></p>
 <p>主要功能:</p>
 <ul>
-<li>提供手动模式及生成模式:</li>
-<li>
-<p>手动模式可自由编写DDL语句并提供自动补全,语法高亮等功能（系统会自动过滤非DDL语句）</p>
-</li>
-<li>
-<p>生成模式提供可视化界面不用编写DDL语句，可直接生成</p>
-</li>
+<li>提交DDL语句工单并提供自动补全,语法高亮等功能（系统会自动过滤非DDL语句）</li>
 </ul>
-<p>生成模式-添加字段流程:</p>
-<pre><code>选择数据库 -&gt; 在生成添加字段页面表单中填写相关字段信息后点击添加(此时并不会生成语句，如果想删除可直接在表格中删除) -&gt; 点击生成 -&gt; 点击提交工单 -&gt; 确认工单无误后提交！
-</code></pre>
-
-<p>生成模式-修改或删除字段流程:</p>
-<pre><code>点击生成修改&amp;删除字段 -&gt; 选择相应字段修改并点击修改确认，或点击删除 删除改字段 -&gt;
-
-点击生成 -&gt; 点击提交工单 -&gt; 确认工单无误后提交！
-</code></pre>
-
 <p>注意事项:</p>
-<pre><code>生成模式能保证绝大多数的DDL语句的正确生成但并不能保证所有的DDL语句都正确生成(毕竟机器是死的人是活的)
-
-对于手动模式来说，一般建议规范DDL语句写法。
-为了确保提交SQL的准确及规范，提交按钮只有在点击检测后错误等级为0时才会激活。
+<pre><code>为了确保提交SQL的准确及规范，提交按钮只有在点击检测后错误等级为0时才会激活。
 
 </code></pre>
 
-<h2 id="_2">索引修改</h2>
-<p>主要功能:</p>
-<ul>
-<li>根据选择条件自动生成索引更改语句</li>
-</ul>
-<p>添加&amp;删除索引 与表结构修改类似</p>
 <h2 id="dml">DML</h2>
 <p><img alt="dashboard" src="../images/sql.png" /></p>
 <p>主要功能:</p>
@@ -282,7 +251,7 @@
 只能提交DML语句,系统会自动过滤非DML语句
 </code></pre>
 
-<h2 id="_3">查询</h2>
+<h2 id="_2">查询</h2>
 <p><img alt="dashboard" src="../images/query_apply.png" />
 <img alt="dashboard" src="../images/query_list.png" />
 主要功能:</p>
@@ -301,18 +270,7 @@
 所有的查询语句都会以查询工单的形式进行保存，用于审计。
 </code></pre>
 
-<h2 id="_4">数据库字典</h2>
-<p><img alt="dashboard" src="../images/dic.png" /></p>
-<p>主要功能:</p>
-<ul>
-<li>数据字典查阅及修改</li>
-<li>导出数据字典(.docx文档)</li>
-</ul>
-<p>注意事项: </p>
-<pre><code>数据字典生成之后只会保存在本地，所以任何对数据字典的操作都不会对线上数据产生影响
-</code></pre>
-
-<h2 id="_5">用户管理</h2>
+<h2 id="_3">用户管理</h2>
 <p><img alt="dashboard" src="../images/user.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -326,22 +284,17 @@
 <pre><code>如开启多级审核，角色下拉框将会出现审核人角色，该角色为最终执行工单的角色。关闭多级审核开关后原有的审核人角色不会自动改变如需使用请自行更改对应角色。
 </code></pre>
 
-<h2 id="_6">数据库管理</h2>
+<h2 id="_4">数据库管理</h2>
 <p><img alt="dashboard" src="../images/managedb.png" /></p>
 <p>主要功能:</p>
 <ul>
 <li>添加，编辑，删除数据库信息</li>
 </ul>
 <p>注意事项: </p>
-<pre><code>字典生成可一键生成所选库下所有表的数据信息(数据将一次性存入本地数据库，之后不会经过线上数据库)
-特别注意一键生成只能一次生效。如果线上又新加了改动则无法再次生成！必须自己手动进入数据库字典页面添加相关信息！
-
-如果发生无法生成数据字典的情况，则较大可能为Yearning库与用来生成字典的目标库字符集不匹配而导致无法写入数据的问题。
-
-如果生成后删除对应库的连接数据库。生成的数据字典不会删除，必须通过字典删除功能才能删除生成的数据字典数据。
+<pre><code>如果生成后删除对应库的连接数据库。生成的数据字典不会删除，必须通过字典删除功能才能删除生成的数据字典数据。
 </code></pre>
 
-<h2 id="_7">审核</h2>
+<h2 id="_5">审核</h2>
 <p><img alt="dashboard" src="../images/audit.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -355,7 +308,7 @@
 虽然在提交工单时已经采取了一定的措施避免了错误的SQL提交，但在选择同意执行前仍应该再次进行检测，确认无误后再执行。
 </code></pre>
 
-<h2 id="_8">权限审核</h2>
+<h2 id="_6">权限审核</h2>
 <p><img alt="dashboard" src="../images/permission_audit.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -365,19 +318,19 @@
 <pre><code>只有超级管理员才可访问(默认超级管理员为用户表id为1的用户)
 </code></pre>
 
-<h2 id="_9">查询审核</h2>
+<h2 id="_7">查询审核</h2>
 <p><img alt="dashboard" src="../images/query.png" /></p>
 <p>主要功能:</p>
 <ul>
 <li>查询申请工单审核 </li>
 </ul>
-<h2 id="_10">查询记录</h2>
+<h2 id="_8">查询记录</h2>
 <p><img alt="dashboard" src="../images/query_audit.png" /></p>
 <p>主要功能:</p>
 <ul>
 <li>查看历史查询记录 </li>
 </ul>
-<h2 id="_11">执行记录</h2>
+<h2 id="_9">执行记录</h2>
 <p><img alt="dashboard" src="../images/record.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -387,7 +340,7 @@
 <pre><code>点击详细后可以查看具体的语句执行信息。并且可以查看回滚语句并重新提交工单。
 </code></pre>
 
-<h2 id="_12">设置</h2>
+<h2 id="_10">设置</h2>
 <p><img alt="dashboard" src="../images/setting.png" /></p>
 <p>主要功能:</p>
 <ul>
@@ -398,7 +351,7 @@
 <pre><code>只有超级管理员才可访问(默认超级管理员为用户表id为1的用户)
 </code></pre>
 
-<h2 id="_13">权限组</h2>
+<h2 id="_11">权限组</h2>
 <p><img alt="dashboard" src="../images/authgroup.png" /></p>
 <p>主要功能:</p>
 <ul>
