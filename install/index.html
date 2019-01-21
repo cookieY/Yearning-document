@@ -183,7 +183,11 @@
 <p>docker-compose中已经包含了mysql且挂载本地目录，不存在容器销毁数据消失的问题，但如果你还是想使用外部mysql,可使用以下步骤：</p>
 <pre><code>1. 新建Yearning库，设置字符集为UTF-8，然后在Yearning库中导入sql文件(Yearning/install/yearning-docker-compose/init-sql)
 
+<<<<<<< HEAD
 2. docker run -d -e HOST=主机地址 -e MYSQL_ADDR=mysql地址 -e MYSQL_USER=mysql用户名 -e MYSQL_PASSWORD=mysql密码 -p8080:8000 registry.cn-hangzhou.aliyuncs.com/cookie/yearning:latest
+=======
+2. docker run -d -e HOST=主机地址 -e MYSQL_ADDR=mysql地址 -e MYSQL_USER=mysql用户名 -e MYSQL_PASSWORD=mysql密码 -p8080:80 -p8000:8000 registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.5
+>>>>>>> 6d5450e6f9a5ac2b8db662db1457cda288da7981
 </code></pre>
 
 <h2 id="_3">注意事项</h2>
