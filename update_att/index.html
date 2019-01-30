@@ -86,6 +86,9 @@
         </ul>
     
 
+    <li class="toctree-l2"><a href="#yearning-140-sql">Yearning 1.4.0 更新sql语句</a></li>
+    
+
     <li class="toctree-l2"><a href="#yearning-133-sql">Yearning 1.3.3 更新sql语句</a></li>
     
 
@@ -177,17 +180,27 @@
 <h4 id="_1">如何更新：</h4>
 <p>适用于docker-compose 以及连接外部mysql安装</p>
 <p>1.下载新的yearning包</p>
-<p>2.stop并删除yearning容器</p>
+<p>2.stop并删除yearning容器以及对应的镜像</p>
 <pre><code class="bash">cd Yearning/install/yearning-docker-compose
 docker-compose stop yearning
 docker-compose rm yearning
+docker rmi [yearning imageID]
+
 </code></pre>
 
-<p>3.连接容器mysql(如果是外部mysql安装那就是外部mysql)执行版本更新sql语句(所有的版本的更新sq都会在下面写明)</p>
-<p>4.启动yearning容器</p>
+<p>4.连接容器mysql(如果是外部mysql安装那就是外部mysql)执行版本更新sql语句(所有的版本的更新sq都会在下面写明)</p>
+<p>5.启动yearning容器</p>
 <pre><code class="bash">cd Yearning/install/yearning-docker-compose
 
 docker-compose up -d yearning
+</code></pre>
+
+<h3 id="yearning-140-sql">Yearning 1.4.0 更新sql语句</h3>
+<pre><code class="sql">
+ALTER TABLE `Yearning`.`core_sqlorder` ADD COLUMN `executor` varchar(50) 
+
+ALTER TABLE `Yearning`.`core_databaselist` CHANGE COLUMN `password` `password` varchar(500) NOT NULL
+
 </code></pre>
 
 <h3 id="yearning-133-sql">Yearning 1.3.3 更新sql语句</h3>
