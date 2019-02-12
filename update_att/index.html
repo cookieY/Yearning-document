@@ -195,6 +195,14 @@ docker rmi [yearning imageID]
 docker-compose up -d yearning
 </code></pre>
 
+<p><strong>请注意 从1.4.0以下版本升级至1.4.0及以上版本的，已存数据库密码需要进行aes加密 请务必执行以下脚本</strong></p>
+<p>请更改src/libs/util.py 22行  （执行完脚本后请改回初始值）</p>
+<p><code>deploy.conf 为 ../deploy.conf</code></p>
+<p>请更改src/libs/con_database.py 下 yearning数据库相关信息
+<img alt="" src="../media/15499376566778.jpg" /></p>
+<p>确认无误后 执行（将自动把现存的明文密码转化成aes加密后的密码）</p>
+<p><strong>请注意,默认采取的salt是django的secret_key 如果线上的secret_key与默认的secret_key不一致请填写线上secret_key值，如线上无修改过secret_key请无视</strong></p>
+<p><img alt="" src="../media/15499378449164.jpg" /></p>
 <h3 id="yearning-140-sql">Yearning 1.4.0 更新sql语句</h3>
 <pre><code class="sql">
 ALTER TABLE `Yearning`.`core_sqlorder` ADD COLUMN `executor` varchar(50) 
