@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Cookie">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>各功能模块说明 - Yearning_guide</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5404\u529f\u80fd\u6a21\u5757\u8bf4\u660e";
+    var mkdocs_page_input_path = "used.md";
+    var mkdocs_page_url = "/used/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Yearning_guide</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Yearning使用手册</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../install/">安装</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../process/">使用流程</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">各功能模块说明</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#dashboard">Dashboard</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_1">我的工单</a></li>
+    
+
+    <li class="toctree-l2"><a href="#ddl">DDL</a></li>
+    
+
+    <li class="toctree-l2"><a href="#dml">DML</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">查询</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_3">用户管理</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_4">数据库管理</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_5">审核</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_6">权限审核</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_7">查询审核</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_8">查询记录</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_9">执行记录</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_10">设置</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_11">权限组</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#yearning">yearning细粒化权限设计理念</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../update/">更新日志</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../update_att/">更新注意事项</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../question/">相关问题</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../sponsorship/">赞助及需求定制</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../thanks/">赞助名单</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../compay/">使用企业</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../develop/">二次开发声明</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">关于</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Yearning_guide</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>各功能模块说明</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/cookieY/Yearning/edit/master/docs/used.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="dashboard">Dashboard</h2>
+<p><img alt="dashboard" src="../images/dashboard.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>
+<p>to-list 可作为一个简易版的记事板且各用户相互独立。对其他用户不可见</p>
+</li>
+<li>
+<p>各项数据展示 全局数据针对所有用户展示</p>
+</li>
+<li>
+<p>个人中心(点击页面右上角用户名) 修改个人邮箱，修改个人密码，查看个人信息及申请权限</p>
+</li>
+<li>
+<p>锁定账户，变换主题及全屏
+<img alt="dashboard" src="../images/lock.gif" /></p>
+</li>
+</ul>
+<p>注意事项: </p>
+<p>to-list仅支持15个字的内容</p>
+<h2 id="_1">我的工单</h2>
+<p><img alt="dashboard" src="../images/myorder.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>查看该账户下提交的工单信息</li>
+</ul>
+<p>注意事项: </p>
+<p><code>每条工单都拥有自己的详细信息。点击详细信息后可以查看该工单提交SQL的信息</code> </p>
+<p><code>同意状态的工单 可以点击详细信息后查看回滚语句并重新提交工单</code></p>
+<p><code>驳回状态的工单 可以点击详细信息后重新编辑SQL语句并重新提交</code></p>
+<p><code>审核状态的工单 点击详细信息后可以撤销工单</code></p>
+<p><code>进行中的工单  不可进行任何操作</code></p>
+<h2 id="ddl">DDL</h2>
+<p><img alt="dashboard" src="../images/alter_ddl.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>提交DDL语句工单并提供自动补全,语法高亮等功能（系统会自动过滤非DDL语句）</li>
+</ul>
+<p>注意事项:</p>
+<pre><code>为了确保提交SQL的准确及规范，提交按钮只有在点击检测后错误等级为0时才会激活。
+
+</code></pre>
+
+<h2 id="dml">DML</h2>
+<p><img alt="dashboard" src="../images/sql.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>DML检测</li>
+<li>DML美化</li>
+<li>DML提交</li>
+<li>DML自动补全,语法高亮</li>
+</ul>
+<p>注意事项: </p>
+<pre><code>为了确保提交SQL的准确及规范，提交按钮只有在点击检测后错误等级为0时才会激活。
+
+只能提交DML语句,系统会自动过滤非DML语句
+</code></pre>
+
+<h2 id="_2">查询</h2>
+<p><img alt="dashboard" src="../images/query_apply.png" />
+<img alt="dashboard" src="../images/query_list.png" />
+主要功能:</p>
+<ul>
+<li>提交查询工单</li>
+<li>导出查询数据</li>
+<li>自动补全关键字，库名，表名,语法高亮</li>
+</ul>
+<p>注意事项: </p>
+<pre><code>如开启查询审核功能，使用查询功能时需向管理员提出工单申请，管理员同意后可直接进入查询页面。
+
+点击树形目录上的表名可直接显示该表的表结构信息。
+
+如需提前终止查询可点击结束会话按钮
+
+所有的查询语句都会以查询工单的形式进行保存，用于审计。
+</code></pre>
+
+<h2 id="_3">用户管理</h2>
+<p><img alt="dashboard" src="../images/user.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>添加，编辑权限组，删除用户信息</li>
+</ul>
+<p>一个用户可以添加多个权限组，且权限组中权限重合将自动去重</p>
+<p>对于用户注册的注意事项(v1.3.1及以上版本)：</p>
+<p>由于1.3.1版本开始开启用户自助注册功能，所以为了安全性，不管是用户自主注册还是管理员手动添加都必须满足以下条件后才能注册用户成功:</p>
+<p>1.设置页面填写了允许的邮箱后缀范围，只有注册时填写的邮箱地址后缀在设置的后缀范围之内才可注册</p>
+<p>注意事项: </p>
+<pre><code>如开启多级审核，角色下拉框将会出现审核人角色，该角色为最终执行工单的角色。关闭多级审核开关后原有的审核人角色不会自动改变如需使用请自行更改对应角色。
+</code></pre>
+
+<h2 id="_4">数据库管理</h2>
+<p><img alt="dashboard" src="../images/managedb.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>添加，编辑，删除数据库信息</li>
+</ul>
+<p>注意事项: </p>
+<pre><code>如果生成后删除对应库的连接数据库。生成的数据字典不会删除，必须通过字典删除功能才能删除生成的数据字典数据。
+</code></pre>
+
+<h2 id="_5">审核</h2>
+<p><img alt="dashboard" src="../images/audit.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>审核工单并执行 </li>
+<li>工单采取的是多线程异步执行的方式。所以就算关闭网页工单一样会执行。获得执行结果需手动点击刷新按钮获取数据</li>
+<li>当提交的为ddl语句并且Inception开启osc时, 对应工单会出现osc进度查看按钮，点击后下拉列表框选择对应的SHA1值，等待5秒后即可显示进度信息(请保证inception已正确设置相关pt配置)并可随时中止。</li>
+</ul>
+<p>注意事项: </p>
+<pre><code>由于inceotion中止osc后没有删除目标库中pt产生的触发器。所以中止后须自己手动删除目标数据库有关pt的触发器
+
+虽然在提交工单时已经采取了一定的措施避免了错误的SQL提交，但在选择同意执行前仍应该再次进行检测，确认无误后再执行。
+</code></pre>
+
+<h2 id="_6">权限审核</h2>
+<p><img alt="dashboard" src="../images/permission_audit.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>权限申请工单审核 </li>
+</ul>
+<p>注意事项: </p>
+<pre><code>只有超级管理员才可访问(默认超级管理员为用户表id为1的用户)
+</code></pre>
+
+<h2 id="_7">查询审核</h2>
+<p><img alt="dashboard" src="../images/query.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>查询申请工单审核 </li>
+</ul>
+<h2 id="_8">查询记录</h2>
+<p><img alt="dashboard" src="../images/query_audit.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>查看历史查询记录 </li>
+</ul>
+<h2 id="_9">执行记录</h2>
+<p><img alt="dashboard" src="../images/record.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>查看历史执行记录</li>
+</ul>
+<p>注意事项: </p>
+<pre><code>点击详细后可以查看具体的语句执行信息。并且可以查看回滚语句并重新提交工单。
+</code></pre>
+
+<h2 id="_10">设置</h2>
+<p><img alt="dashboard" src="../images/setting.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>设置平台动态配置项，可立即生效</li>
+</ul>
+<p><a href="https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.tRwLqm&amp;treeId=257&amp;articleId=105735&amp;docType=1">钉钉webhook具体使用教程</a></p>
+<p>注意事项: </p>
+<pre><code>只有超级管理员才可访问(默认超级管理员为用户表id为1的用户)
+</code></pre>
+
+<h2 id="_11">权限组</h2>
+<p><img alt="dashboard" src="../images/authgroup.png" /></p>
+<p>主要功能:</p>
+<ul>
+<li>划分权限组(权限组为可组合模式，一个用户可以继承多个权限组提供的权限)</li>
+</ul>
+<p>注意事项: </p>
+<pre><code>只有超级管理员才可访问(默认超级管理员为用户表id为1的用户)
+</code></pre>
+
+<h3 id="yearning">yearning细粒化权限设计理念</h3>
+<p>在一般的使用过程,用户会有各种不同类型的权限需求，所以权限必须做到细粒度，且以功能来划分最为合理。</p>
+<p>Yearning采用多源权限策略，以及多权限配合的设计方案。</p>
+<p>首先将提交人和审核人/执行人 通过角色属性区分开来。</p>
+<p>然后再通过细粒度的基于功能的权限 对每个用户进行个性化的权限配置。</p>
+<p>细粒度可配置的权限如下图（由于查询采用工单形式所以现阶段查询权限已舍弃）:</p>
+<p><img alt="" src="../images/per.png" /></p>
+<p>细力度权限的每一种权限都具有独立性。所以权限相互独立，互不影响。并且用户可以同时继承不同的权限组，管理员可根据每个用户的实际需求自由组合权限组（多个权限组中重复的权限系统会自动去重)。</p>
+<p>所以拼图式的权限划分保证了管理员充分的管理自由性，更能适应不同公司的不同需求。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../update/" class="btn btn-neutral float-right" title="更新日志">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../process/" class="btn btn-neutral" title="使用流程"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/cookieY/Yearning/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../process/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../update/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
